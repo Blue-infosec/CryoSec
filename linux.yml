@@ -1,0 +1,12 @@
+- hosts: all
+  become: yes
+  roles:
+      - { role: ansible-role-rhel7-stig, vars: { act: "remove" }, tags: DISA-STIG-RHEL-07-020110 }
+      #- { role: ansible-role-rhel7-stig, tags: DISA-STIG-RHEL-07-020110 }
+      
+#  tasks:
+#    - include_role:
+#        name: ansible-role-rhel7-stig
+#      vars:
+#      tags:
+#        - remove
