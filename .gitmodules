@@ -1,0 +1,6 @@
+[submodule "ansible-role-rhel7-stig"]
+	path = ansible-role-rhel7-stig
+	url = git@github.com:DevManTillis/ansible-role-rhel7-stig.git
+[submodule "Windows-2012-Member-Server-STIG"]
+	path = Windows-2012-Member-Server-STIG
+	url = git@github.com:DevManTillis/Windows-2012-Member-Server-STIG.git
