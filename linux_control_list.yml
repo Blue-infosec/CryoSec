@@ -4,7 +4,7 @@
     - role: ansible-role-rhel7-stig
       vars: 
         DISA_STIG_RHEL_07_020110: check
-
+# EXAMPLE
 #    - role: ansible-role-rhel7-stig
 #      vars: 
 #        DISA-STIG-RHEL-07-020110: check | apply | remove
