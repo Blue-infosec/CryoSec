@@ -1,6 +1,0 @@
-- hosts: all
-  become: yes
-  tasks:
-    - include_role:
-        name: ansible-role-rhel7-stig
-      vars:
