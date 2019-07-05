@@ -86,31 +86,23 @@
 #
 # CHECK RECORD RESULT
 # 3  Pass the 'result fact'
-#
+
 - name:  07-020110 | Control CHECK
   block:
     - name: 07-020110 | CHECK PROCESS
       set_fact:
        # non-existant
-       #autofs_service: "{{ ansible_facts.services['autofs.service'].status | default('disabled') }}"
+       autofs_service: "{{ ansible_facts.services['autofs.service'].status | default('disabled') }}"
        # enabled
        #autofs_service: "enabled"
        # disabled
-       autofs_service: "disabled"
-      tags: "tester"
-    - name: 07-020110 | CHECK RESULT REGISTER
-      set_fact:
-       autofs_service_result: "{{ true if ( autofs_service == 'disabled' or autofs_service == '' ) else false }}"
-       stig_id: 07-020110
-      tags: "tester"
-    - name: 07-020110 | CHECK RECORD RESULT
-      record_result:
-        name: bingo
-        check_result: "{{ autofs_service_result }}"
-        #check_result: false
-        stig_id: "{{  stig_id }}"
-        checklist_name: "{{ checklist_name }}"
-      tags: "tester"
+       #autofs_service: "disabled"
+
+    - name: Pass variables to role
+      include_role:
+        name: vuln-check
+      vars:
+        check_process_output: "{{ autofs_service }}"
   when:
   - DISA_STIG_RHEL_07_020110 == "check"
   #- ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
@@ -121,6 +113,7 @@
   - low_disruption | bool
   - low_complexity | bool
   tags:
+  - tester
   - service_autofs_disabled
   - medium_severity
   - disable_strategy

@@ -1,0 +1,14 @@
+---
+# tasks file for vuln-check
+- name:  07-020110 | Control CHECK
+  block:
+    - name: 07-020110 | CHECK RESULT REGISTER
+      set_fact:
+       check_process_output_result: "{{ true if ( check_process_output == 'disabled' or check_process_output == '' ) else false }}"
+       stig_id: 07-020110
+    - name: 07-020110 | CHECK RECORD RESULT
+      record_result:
+        name: bingo
+        check_result: "{{ check_process_output_result }}"
+        stig_id: "{{  stig_id }}"
+        checklist_name: "{{ checklist_name }}"
