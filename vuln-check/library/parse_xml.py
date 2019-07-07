@@ -14,19 +14,10 @@ OBJECTIVES
 [] Search for data that you want
 """
 
-# POPLULATE NEW CHECKLIST
-"""
-#newtree.write('NEW_output.xml')
-"""
-
-def file_process():
-    f = open(file='rhel7_05252019.ckl',mode='rb')
-    return f.read()
-    #print(f.readlines())
-
 
 # Get and Print MACHINE VULN DATA
-def process_xml(data):
+def process_xml(data,tolist=True):
+
     # Create main list
     master_vuln_list = []
     
@@ -49,6 +40,7 @@ def process_xml(data):
 
         elements=VULNS[i].getElementsByTagName
         xml_attri=elements("ATTRIBUTE_DATA")
+
         # DEFINE CHECKLIST DATA ELEMENTS
         vuln_dict = {
             "stigid":          chkval(xml_attri[4]),
@@ -63,35 +55,57 @@ def process_xml(data):
             "comments":        chkval(elements("COMMENTS")[0])
         }
         
-        # add list to main list
+        # Add checklist data to main list
         master_vuln_list.append(vuln_dict)
-        
         i += 1
-    # Return 1st item in checklist
-    return master_vuln_list
+
+    # Return 1st item in checklist - return raw xml or a list of VULNS
+    if tolist == True:
+        return master_vuln_list
+    if tolist == False:
+        return VULNS
+
     #Return specific item in checklist
     #return [ vuln for vuln in master_vuln_list if '07-020110' in vuln['stigid'] ]
 
-data=file_process() 
-print(process_xml(data))
+
+# Load the checklist file
+def file_process(inputfile):
+    #f = open(file='rhel7_05252019.ckl',mode='rb')
+    f = open(file='rhel7_05252019.ckl',mode='rb')
+    return f.read()
 
 
+# Set the STATUS
+def set_status(node):
+    stig_id=node.getElementsByTagName("STIG_DATA")[4].childNodes[3].firstChild.nodeValue 
+    node.getElementsByTagName("STATUS")[0].childNodes[0].nodeValue='TEST_VALUE'
 
-"""
-   print("Description: %s" % description.childNodes[0].data)
-"""
-"""
-    i = 0
-    while i < number_of_VULNS:
-        status = VULN[i].find('STATUS').text
-        #newroot.remove(VULN[i])
-        #newroot.remove(V)
-        print(VULN[i].tag)
-        print(VULN[i])
-        newroot.remove(iSTIG[0][i])
-        i += 1
-"""
 
+# Iterate through VULNS that match a stig_id and process STATUS update
+def mark_checklist(inputfile):
+    data=file_process(inputfile) 
+    rawxml=process_xml(data,False)
+
+    #Set the STATUS of VULN per particular stig_id
+    [ set_status(item) for item in 
+        rawxml if '07-020110' in 
+        item.getElementsByTagName("STIG_DATA")[4].childNodes[3].firstChild.nodeValue 
+        ]
+    #Print STATUS for VULN per particular stig_id
+    [ print(item.getElementsByTagName("STATUS")[0].childNodes[0].nodeValue) 
+        for item in rawxml 
+        if '07-020110' in 
+        item.getElementsByTagName("STIG_DATA")[4].childNodes[3].firstChild.nodeValue 
+        ]
+
+    #f"output_{ inputfile }"
+    rawxml.toprettyxml()
+
+
+inputfile = 'rhel7_05252019.ckl'
+mark_checklist(inputfile)
+  
 
 
 
