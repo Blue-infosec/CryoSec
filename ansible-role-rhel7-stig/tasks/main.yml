@@ -91,18 +91,19 @@
   block:
     - name: 07-020110 | CHECK PROCESS
       set_fact:
-       # non-existant
-       autofs_service: "{{ ansible_facts.services['autofs.service'].status | default('disabled') }}"
+      # non-existant
+        autofs_service: "{{ ansible_facts.services['autofs.service'].status }}"
+      when: "'autofs' in ansible_facts.services"
        # enabled
        #autofs_service: "enabled"
        # disabled
        #autofs_service: "disabled"
 
-    - name: Pass variables to role
+    - name: Write Result
       include_role:
         name: vuln-check
       vars:
-        check_process_output: "{{ autofs_service }}"
+        check_process_output: "{{ autofs_service | default('Not_A_Finding') }}"
   when:
   - DISA_STIG_RHEL_07_020110 == "check"
   #- ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
