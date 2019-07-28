@@ -89,24 +89,29 @@
 
 - name:  07-020110 | Control CHECK
   block:
-    - name: 07-020110 | CHECK PROCESS - set_fact
+    - name: 07-020110 | CHECK - set_fact default
       set_fact:
-        check_fact: "None"
+        check_fact: "stopped" #None
 
-    - name: CHECK PROCESS - set_fact
+    - name: CHECK - set_fact
       set_fact:
-      # non-existant
-        check_fact: "{{ ansible_facts.services['tuned.service'].state }}"
-        #check_fact: "{{ ansible_facts.services['autofs.service'].state }}"
-      when: "'tuned.service' in ansible_facts.services"
-      #when: "'autofs' in ansible_facts.services"
+        check_fact: "{{ ansible_facts.services['autofs.service'].state }}" #"{{ ansible_facts.services['tuned.service'].state }}" 
+      when: "'autofs' in ansible_facts.services" #"'tuned.service' in ansible_facts.services" 
 
-    - name: Write Result
-      include_role:
-        name: vuln-check
-      vars:
-        check_process_output: "{{ 'Not_A_Finding' if ( check_fact == 'stopped' or check_fact == 'None' ) else 'Open' }}"
-        stig_id: 07-020110
+#    - name: Check Logic
+#      get_check_result:
+#        name: Test Var to pass to custom module
+#        check_fact: "{{ 'Not_A_Finding' if ( check_fact == 'stopped' or check_fact == 'None' ) else 'Open' }}"
+#        stig_id: "07-020110"
+#        checklist_name: "{{ checklist_name }}"
+
+    - name: Write Check
+      record_check_result:
+        name: Test Var to pass to custom module
+        check_fact: "{{ 'Not_A_Finding' if ( check_fact == 'stopped' or check_fact == 'None' ) else 'Open' }}"
+        stig_id: "07-020110"
+        checklist_name: "{{ checklist_name }}"
+
   when:
   - DISA_STIG_RHEL_07_020110 == "check"
   #- ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
