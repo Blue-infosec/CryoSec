@@ -89,21 +89,24 @@
 
 - name:  07-020110 | Control CHECK
   block:
-    - name: 07-020110 | CHECK PROCESS
+    - name: 07-020110 | CHECK PROCESS - set_fact
+      set_fact:
+        check_fact: "None"
+
+    - name: CHECK PROCESS - set_fact
       set_fact:
       # non-existant
-        autofs_service: "{{ ansible_facts.services['autofs.service'].status }}"
-      when: "'autofs' in ansible_facts.services"
-       # enabled
-       #autofs_service: "enabled"
-       # disabled
-       #autofs_service: "disabled"
+        check_fact: "{{ ansible_facts.services['tuned.service'].state }}"
+        #check_fact: "{{ ansible_facts.services['autofs.service'].state }}"
+      when: "'tuned.service' in ansible_facts.services"
+      #when: "'autofs' in ansible_facts.services"
 
     - name: Write Result
       include_role:
         name: vuln-check
       vars:
-        check_process_output: "{{ autofs_service | default('Not_A_Finding') }}"
+        check_process_output: "{{ 'Not_A_Finding' if ( check_fact == 'stopped' or check_fact == 'None' ) else 'Open' }}"
+        stig_id: 07-020110
   when:
   - DISA_STIG_RHEL_07_020110 == "check"
   #- ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"

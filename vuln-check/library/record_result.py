@@ -73,7 +73,7 @@ def run_module():
     module_args = dict(
         name=dict(type='str', required=False),
         new=dict(type='bool', required=False, default=False),
-        check_result=dict(type='bool', required=True),
+        check_fact=dict(type='str', required=True),
         stig_id=dict(type='str', required=True),
         checklist_name=dict(type='str', required=True)
     )
@@ -120,11 +120,11 @@ def run_module():
     # during the execution of the module, if there is an exception or a
     # conditional state that effectively causes a failure, run
     # AnsibleModule.fail_json() to pass in the message and the result
-    if module.params['check_result'] == False:
-        module.fail_json(msg='You requested this to fail', **result)
+    if module.params['check_fact'] == "Open":
+        module.fail_json(msg='check_fact rule was "Open"', **result)
 
-    if module.params['check_result'] == True:
-        module.exit_json(msg="bingo")
+    if module.params['check_fact'] == "Not_A_Finding":
+        module.exit_json(msg='check_fact rule was "Not_A_Finding"')
         #module.exit_json(msg="bingo",**result)
         ##result['message'] = 'bingo!'
     # in the event of a successful module execution, you will want to
