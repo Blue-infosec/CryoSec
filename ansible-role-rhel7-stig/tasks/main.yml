@@ -89,11 +89,11 @@
 
 - name:  07-020110 | Control CHECK
   block:
-    - name: 07-020110 | CHECK - set_fact default
+    - name: 07-020110 | CHECK - set_fact - To default value
       set_fact:
         check_fact: "stopped" #None
 
-    - name: CHECK - set_fact
+    - name: 07-020110 | CHECK - set_fact - To true fact value
       set_fact:
         check_fact: "{{ ansible_facts.services['autofs.service'].state }}" #"{{ ansible_facts.services['tuned.service'].state }}" 
       when: "'autofs' in ansible_facts.services" #"'tuned.service' in ansible_facts.services" 
@@ -111,6 +111,7 @@
         check_fact: "{{ 'Not_A_Finding' if ( check_fact == 'stopped' or check_fact == 'None' ) else 'Open' }}"
         stig_id: "07-020110"
         checklist_name: "{{ checklist_name }}"
+        write_result: true
 
   when:
   - DISA_STIG_RHEL_07_020110 == "check"

@@ -67,12 +67,14 @@ message:
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-
+from custom_utils import write
+# asdf
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         name=dict(type='str', required=False),
         new=dict(type='bool', required=False, default=False),
+        write_result=dict(type='bool', required=False, default=False),
         check_fact=dict(type='str', required=True),
         stig_id=dict(type='str', required=True),
         checklist_name=dict(type='str', required=True)
@@ -126,7 +128,9 @@ def run_module():
     if module.params['check_fact'] == "Not_A_Finding":
         module.exit_json(msg='check_fact rule was "Not_A_Finding"')
         #module.exit_json(msg="bingo",**result)
-        ##result['message'] = 'bingo!'
+    if write_result is True:
+        write(result['checklist_name'],result['check_fact'])
+
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results
     ##module.exit_json(**result)
