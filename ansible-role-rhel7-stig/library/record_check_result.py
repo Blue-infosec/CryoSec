@@ -68,16 +68,18 @@ message:
 
 from ansible.module_utils.basic import AnsibleModule
 import json
+from context import rolepath
 # asdf
 
 def write(checklist_name,checklist_fact):
     args_data = "IT Works!"
-    f = open(str(checklist_name),"w+")
-    f.write("Bingo")
+    f = open(f"{rolepath}/{checklist_name}","w+")
+    f.write(checklist_fact)
     #f.write(f"{checklist_name},{checklist_fact}")
     f.close()
     #args_data = file(checklist_name).read()
-    return args_data
+    return checklist_name
+    #return args_data
 #    return None
 
 def run_module():
@@ -140,7 +142,7 @@ def run_module():
     #    module.exit_json(msg='check_fact rule was "Not_A_Finding"')
     #    #module.exit_json(msg="bingo",**result)
     if module.params['write_result'] is True:
-        module.exit_json(msg=write(module_args['checklist_name'],module_args['check_fact']),**result)
+        module.exit_json(msg=write(module.params['checklist_name'],module.params['check_fact']),**result)
 
 
     # in the event of a successful module execution, you will want to
