@@ -95,8 +95,8 @@
 
     - name: 07-020110 | CHECK - set_fact - To true fact value
       set_fact:
-        check_fact: "{{ ansible_facts.services['autofs.service'].state }}" #"{{ ansible_facts.services['tuned.service'].state }}" 
-      when: "'autofs' in ansible_facts.services" #"'tuned.service' in ansible_facts.services" 
+        check_fact: "{{ ansible_facts.services['autofs.service'].state }}" #"{{ ansible_facts.services['tuned.service'].state }}"
+      when: "'autofs' in ansible_facts.services" #"'tuned.service' in ansible_facts.services"
 
 #    - name: Check Logic
 #      get_check_result:

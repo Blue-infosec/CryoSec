@@ -134,7 +134,7 @@ def run_module():
     #if module.params['check_fact'] == "Not_A_Finding":
     #    module.exit_json(msg='check_fact rule was "Not_A_Finding"')
     #    #module.exit_json(msg="bingo",**result)
-    if write_result is True:
+    if module.params['write_result'] is True:
         module.exit_json(msg=write(module_args['checklist_name'],module_args[checklist]),**result)
 
 
