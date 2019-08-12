@@ -68,17 +68,20 @@ message:
 
 from ansible.module_utils.basic import AnsibleModule
 import json
-from context import rolepath
+#from . context import rolepath
+import os,sys
+rolepath=os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
 # asdf
 
 def write(checklist_name,checklist_fact):
     args_data = "IT Works!"
-    f = open(f"{rolepath}/{checklist_name}","w+")
-    f.write(checklist_fact)
-    #f.write(f"{checklist_name},{checklist_fact}")
-    f.close()
+    #f = open(f"{rolepath}/{checklist_name}","w+")
+    #f.write(checklist_fact)
+    ##f.write(f"{checklist_name},{checklist_fact}")
+    #f.close()
     #args_data = file(checklist_name).read()
-    return checklist_name
+    return rolepath
+    #return checklist_name
     #return args_data
 #    return None
 
