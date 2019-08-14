@@ -106,9 +106,10 @@
 #        checklist_name: "{{ checklist_name }}"
 
     - name: Write Check
-      record_check_result:
-        name: Test Var to pass to custom module
-        check_fact: "{{ 'Not_A_Finding' if ( check_fact == 'stopped' or check_fact == 'None' ) else 'Open' }}"
+      import_role:
+        name: save_vuln
+      vars:
+        check_fact: "{{ check_fact }}"
         stig_id: "07-020110"
         checklist_name: "{{ checklist_name }}"
         write_result: true

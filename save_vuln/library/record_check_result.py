@@ -70,20 +70,23 @@ from ansible.module_utils.basic import AnsibleModule
 import json
 #from . context import rolepath
 import os,sys
-rolepath=os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
+#rolepath=os.path.abspath(os.path.join(os.path.dirname(__file__), '.'))
+#facts.collect()
+#rolepath=os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
 # asdf
 
-def write(checklist_name,checklist_fact):
+def write(
+        checklist_name,
+        checklist_fact,
+        role_path,stig_id
+        ):
     args_data = "IT Works!"
-    #f = open(f"{rolepath}/{checklist_name}","w+")
-    #f.write(checklist_fact)
-    ##f.write(f"{checklist_name},{checklist_fact}")
-    #f.close()
-    #args_data = file(checklist_name).read()
-    return rolepath
-    #return checklist_name
-    #return args_data
-#    return None
+    project_path = os.path.abspath(os.path.join(role_path,'../'))
+    f = open(f"{project_path}/{checklist_name}.ckl","w+")
+    f.write(f"{stig_id},{checklist_fact}\n")
+    f.close()
+    return f"{project_path}/{checklist_name}.ckl"
+
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
@@ -93,7 +96,8 @@ def run_module():
         write_result=dict(type='bool', required=False, default=False),
         check_fact=dict(type='str', required=True),
         stig_id=dict(type='str', required=True),
-        checklist_name=dict(type='str', required=True)
+        checklist_name=dict(type='str', required=True),
+        role_path=dict(type='str', required=True)
     )
 
     # seed the result dict in the object
@@ -145,7 +149,12 @@ def run_module():
     #    module.exit_json(msg='check_fact rule was "Not_A_Finding"')
     #    #module.exit_json(msg="bingo",**result)
     if module.params['write_result'] is True:
-        module.exit_json(msg=write(module.params['checklist_name'],module.params['check_fact']),**result)
+        module.exit_json(msg=write(
+            module.params['checklist_name'],
+            module.params['check_fact'],
+            module.params['role_path'],
+            module.params['stig_id']),
+            **result)
 
 
     # in the event of a successful module execution, you will want to
