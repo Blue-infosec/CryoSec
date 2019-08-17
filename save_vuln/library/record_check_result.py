@@ -67,6 +67,7 @@ message:
 '''
 
 from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.modCheckList import modCheckList
 import json
 #from . context import rolepath
 import os,sys
@@ -149,6 +150,10 @@ def run_module():
     #    module.exit_json(msg='check_fact rule was "Not_A_Finding"')
     #    #module.exit_json(msg="bingo",**result)
     if module.params['write_result'] is True:
+        ckl = modCheckList('rhel7_05252019.ckl','rhel7_05252019.ckl.output', module.params['stig_id']), module.params['check_fact'])
+        ckl.mark_checklist()
+        ckl.write_checklist()
+
         module.exit_json(msg=write(
             module.params['checklist_name'],
             module.params['check_fact'],

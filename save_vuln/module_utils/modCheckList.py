@@ -16,7 +16,7 @@ OBJECTIVES
 
 
 # Get and Print MACHINE VULN DATA
-class checkList:
+class modCheckList:
 
     def __init__(self,input_file,output_file,stig_id,status):
         self.input_file = input_file
@@ -52,15 +52,15 @@ class checkList:
             # DEFINE CHECKLIST DATA ELEMENTS
             vuln_dict = {
                 "stigid":          chk_has_val(xml_attri[4]),
-                "vulnid":          chkval(xml_attri[0]),
-                "severity":        chkval(xml_attri[1]),
-                "vulndiscuss":     chkval(xml_attri[6]),
-                "checkcontent":    chkval(xml_attri[8]),
-                "fixtext":         chkval(xml_attri[9]),
-                "stigref":         chkval(xml_attri[21]),
-                "status":          chkval(elements("STATUS")[0]),
-                "finding_details": chkval(elements("FINDING_DETAILS")[0]),
-                "comments":        chkval(elements("COMMENTS")[0])
+                "vulnid":          chk_has_val(xml_attri[0]),
+                "severity":        chk_has_val(xml_attri[1]),
+                "vulndiscuss":     chk_has_val(xml_attri[6]),
+                "checkcontent":    chk_has_val(xml_attri[8]),
+                "fixtext":         chk_has_val(xml_attri[9]),
+                "stigref":         chk_has_val(xml_attri[21]),
+                "status":          chk_has_val(elements("STATUS")[0]),
+                "finding_details": chk_has_val(elements("FINDING_DETAILS")[0]),
+                "comments":        chk_has_val(elements("COMMENTS")[0])
             }
 
             # Add checklist data to main list
@@ -103,14 +103,14 @@ class checkList:
 
 
 
-ckl = checkList('rhel7_05252019.ckl','rhel7_05252019.ckl.output','07-020110','NEW_VALUE')
-ckl.status = 'NEW_VALUE'
-ckl.output_file
-ckl.input_file
-ckl.mark_checklist()
-ckl.status = 'NEW_VALUE2'
-ckl.mark_checklist()
-ckl.write_checklist()
+#ckl = modCheckList('rhel7_05252019.ckl','rhel7_05252019.ckl.output','07-020110','NEW_VALUE')
+#ckl.status = 'NEW_VALUE'
+#ckl.output_file
+#ckl.input_file
+#ckl.mark_checklist()
+#ckl.status = 'NEW_VALUE2'
+#ckl.mark_checklist()
+#ckl.write_checklist()
 
 
 
