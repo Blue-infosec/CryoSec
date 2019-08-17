@@ -105,6 +105,7 @@
 #        stig_id: "07-020110"
 #        checklist_name: "{{ checklist_name }}"
 
+
     - name: Write Check
       import_role:
         name: save_vuln
