@@ -76,18 +76,6 @@ import os,sys
 #rolepath=os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
 # asdf
 
-def write(
-        checklist_name,
-        checklist_fact,
-        role_path,stig_id
-        ):
-    args_data = "IT Works!"
-    project_path = os.path.abspath(os.path.join(role_path,'../'))
-    f = open(f"{project_path}/{checklist_name}.ckl","w+")
-    f.write(f"{stig_id},{checklist_fact}\n")
-    f.close()
-    return f"{project_path}/{checklist_name}.ckl"
-
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
@@ -145,27 +133,20 @@ def run_module():
     # AnsibleModule.fail_json() to pass in the message and the result
     if module.params['check_fact'] == "Open":
         module.fail_json(msg='check_fact rule was "Open"', **result)
+    if module.params['check_fact'] == "Not_A_Finding":
+        module.exit_json(msg='check_fact rule was "Not_A_Finding"')
 
-    #if module.params['check_fact'] == "Not_A_Finding":
-    #    module.exit_json(msg='check_fact rule was "Not_A_Finding"')
-    #    #module.exit_json(msg="bingo",**result)
     if module.params['write_result'] is True:
-        ckl = modCheckList('rhel7_05252019.ckl','rhel7_05252019.ckl.output', module.params['stig_id']), module.params['check_fact'])
+        ckl = modCheckList(
+                f"{module.params['role_path']}/input_checklists/rhel7_05252019.ckl",
+                f"{module.params['role_path']}/output_checklists/rhel7_05252019.ckl",
+                module.params['stig_id'],
+                module.params['check_fact'])
         ckl.mark_checklist()
         ckl.write_checklist()
 
-        module.exit_json(msg=write(
-            module.params['checklist_name'],
-            module.params['check_fact'],
-            module.params['role_path'],
-            module.params['stig_id']),
-            **result)
+        module.exit_json(msg=f"checklist_output: {module.params['role_path']}/output_checklists/rhel7_05252019.ckl",**result)
 
-
-    # in the event of a successful module execution, you will want to
-    # simple AnsibleModule.exit_json(), passing the key/value results
-    ##module.exit_json(**result)
-    ##module.exit_json(**result)
 
 def main():
     run_module()
