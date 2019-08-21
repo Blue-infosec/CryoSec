@@ -128,15 +128,7 @@ def run_module():
         result['changed'] = False
         #results['changed'] = True
 
-    # during the execution of the module, if there is an exception or a
-    # conditional state that effectively causes a failure, run
-    # AnsibleModule.fail_json() to pass in the message and the result
-    if module.params['check_fact'] == "Open":
-        module.fail_json(msg='check_fact rule was "Open"', **result)
-    if module.params['check_fact'] == "Not_A_Finding":
-        module.exit_json(msg='check_fact rule was "Not_A_Finding"')
-
-    if module.params['write_result'] is True:
+    def gen_checklist():
         ckl = modCheckList(
                 f"{module.params['role_path']}/input_checklists/rhel7_05252019.ckl",
                 f"{module.params['role_path']}/output_checklists/rhel7_05252019.ckl",
@@ -144,6 +136,17 @@ def run_module():
                 module.params['check_fact'])
         ckl.mark_checklist()
         ckl.write_checklist()
+
+    # during the execution of the module, if there is an exception or a
+    # conditional state that effectively causes a failure, run
+    # AnsibleModule.fail_json() to pass in the message and the result
+    if module.params['write_result'] is True:
+        if module.params['check_fact'] == "Open":
+            gen_checklist()
+            module.fail_json(msg='check_fact rule was "Open"', **result)
+        if module.params['check_fact'] == "Not_A_Finding":
+            gen_checklist()
+            module.exit_json(msg='check_fact rule was "Not_A_Finding"')
 
         module.exit_json(msg=f"checklist_output: {module.params['role_path']}/output_checklists/rhel7_05252019.ckl",**result)
 
