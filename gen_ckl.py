@@ -33,7 +33,7 @@ istig.appendChild(stig_info)
 
 newdoc.createElement("STIG_INFO")
 
-[top_element.appendChild(item) for item in stigs]
+#[top_element.appendChild(item) for item in stigs]
 
 
 
