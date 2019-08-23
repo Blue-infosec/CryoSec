@@ -86,6 +86,7 @@ def run_module():
         check_fact=dict(type='str', required=True),
         stig_id=dict(type='str', required=True),
         checklist_name=dict(type='str', required=True),
+        output_path=dict(type='str', required=True),
         role_path=dict(type='str', required=True)
     )
 
