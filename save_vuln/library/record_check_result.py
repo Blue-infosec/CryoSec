@@ -87,7 +87,7 @@ def run_module():
         stig_id=dict(type='str', required=True),
         checklist_name=dict(type='str', required=True),
         output_path=dict(type='str', required=True),
-        role_path=dict(type='str', required=True)
+        input_path=dict(type='str', required=True)
     )
 
     # seed the result dict in the object
@@ -131,8 +131,8 @@ def run_module():
 
     def gen_checklist():
         ckl = modCheckList(
-                f"{module.params['role_path']}/input_checklists/rhel7_05252019.ckl",
-                f"{module.params['role_path']}/output_checklists/rhel7_05252019.ckl",
+                f"{module.params['input_path']}/rhel7_05252019.ckl",
+                f"{module.params['output_path']}/rhel7_05252019.ckl",
                 module.params['stig_id'],
                 module.params['check_fact'])
         ckl.mark_checklist()
@@ -149,7 +149,7 @@ def run_module():
             gen_checklist()
             module.exit_json(msg='check_fact rule was "Not_A_Finding"')
 
-        module.exit_json(msg=f"checklist_output: {module.params['role_path']}/output_checklists/rhel7_05252019.ckl",**result)
+        module.exit_json(msg=f"checklist_output: {module.params['output_path']}/rhel7_05252019.ckl",**result)
 
 
 def main():

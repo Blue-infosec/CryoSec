@@ -7,6 +7,6 @@
     stig_id: "{{ stig_id }}"
     checklist_name: "{{ checklist_name }}"
     write_result: "{{ write_result }}"
-    output_path: "{{ role_path | dirname}}/output_checklists"
-    role_path: "{{ role_path }}"
+    output_path: "{{ role_path | dirname}}/files/output_checklists"
+    input_path: "{{ role_path | dirname}}/files/input_checklists"
   delegate_to: localhost
