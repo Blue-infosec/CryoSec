@@ -1,0 +1,4 @@
+cd /mnt/c/Users/standard/Desktop/cryoSecSDK/CryoSec
+echo "Updating CryoSec Repo..."
+git pull
+PATH=$PATH:/mnt/c/Users/standard/Desktop/cryoSecSDK/CryoSec/utils
