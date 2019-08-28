@@ -1,0 +1,17 @@
+Virtual Box
+
+CentOS7 VM
+  ansible2.7.8
+  python3
+  docker
+  net-tools
+  firewall-cmd
+  vim
+  wget
+
+WSL Ubuntu 18.04
+
+SSH plugin
+https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
+
+Git Latest
