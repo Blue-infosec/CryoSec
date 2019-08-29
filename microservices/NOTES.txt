@@ -1,10 +1,10 @@
-Microservice for checklist statuses
+Microservice for set/get of checklist statuses
 
 Statuses:
 Not_A_Finding,Open,Not_Reviewed,Not_Applicable
 
 Verbs:
-GET
-PUT
-
-
+[x] GET
+[ ] PUT
+[ ] DELETE
+[ ] POST
