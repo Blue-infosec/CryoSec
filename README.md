@@ -70,7 +70,7 @@
 
 ## Table of Contents (Optional)
 
-> If you're `README` has a lot of info, section headers might be nice.
+<!-- > If you're `README` has a lot of info, section headers might be nice. -->
 
 - [Installation](#installation)
 - [Features](#features)
@@ -165,10 +165,10 @@ $ bower install
 
 <!-- > Or Contributors/People -->
 
-| <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> |
+| <a href="http://fvcproductions.com" target="_blank">**Founder & DevSecOps Architect**</a> | <a href="http://fvcproductions.com" target="_blank">**Python Developer**</a> |
 | :---: |:---: |
-| [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)    | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) |
-| <a href="http://github.com/fvcproductions" target="_blank">`github.com/DevManTillis`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/nbatlle`</a> |
+| [![FVCproductions](https://avatars2.githubusercontent.com/u/15160643?s=460&v=4)](http://github.com/DevManTillis)    | [![FVCproductions](hhttps://avatars1.githubusercontent.com/u/20366041?s=460&v=4)](http://github.com/nbatlle) |
+| <a href="http://github.com/DevManTillis" target="_blank">`github.com/DevManTillis`</a> | <a href="http://github.com/nbatlle" target="_blank">`github.com/nbatlle`</a> |
 <!--
 
 | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)    | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)  |
