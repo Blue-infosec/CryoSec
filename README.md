@@ -75,7 +75,7 @@
 - [Installation](#installation)
 - [Features](#features)
 - [Contributing](#contributing)
-- [Team](#team)
+<!-- - [Team](#team) -->
 - [FAQ](#faq)
 - [Support](#support)
 - [License](#license)
@@ -83,7 +83,7 @@
 
 ---
 
-## Example (Optional)
+## Example
 <!--
 ```javascript
 // code away!
@@ -141,9 +141,11 @@ $ bower install
 
 ---
 
+<!--
 ## Features
 ## Usage (Optional)
 ## Documentation (Optional)
+-->
 ## Tests (Optional)
 
 - Going into more detail on code and technologies used
