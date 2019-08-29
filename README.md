@@ -167,7 +167,7 @@ $ bower install
 
 | <a href="http://fvcproductions.com" target="_blank">**Founder & DevSecOps Architect**</a> | <a href="http://fvcproductions.com" target="_blank">**Python Developer**</a> |
 | :---: |:---: |
-| [![devmantillis](https://avatars2.githubusercontent.com/u/15160643?s=460&v=4?s=200)](http://github.com/DevManTillis)    | [![nbatlle](https://avatars1.githubusercontent.com/u/20366041?s=460&v=4?s=200)](http://github.com/nbatlle) |
+| [![devmantillis](https://avatars2.githubusercontent.com/u/15160643?s=200&v=4)](http://github.com/DevManTillis)    | [![nbatlle](https://avatars1.githubusercontent.com/u/20366041?s=200&v=4)](http://github.com/nbatlle) |
 | <a href="http://github.com/DevManTillis" target="_blank">`github.com/DevManTillis`</a> | <a href="http://github.com/nbatlle" target="_blank">`github.com/nbatlle`</a> |
 <!--
 
