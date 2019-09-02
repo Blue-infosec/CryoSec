@@ -115,8 +115,8 @@ let generateProject = project => {
 - Setup a RedHat based system with atleast 4GB RAM and 2 vCPUs
 - Install the AWS SAM Cli
 [AWS SAM Cli Install Directions](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html)
-- Install Docker
-[Docker Install directions]()
+- Install Docker Community Edition
+[Docker-CE Install directions]()
 - Images of what it should look like
 
 ### Clone
