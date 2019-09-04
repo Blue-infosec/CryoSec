@@ -1,0 +1,28 @@
+#Make sure that the Region for this bucket aligns with where you deploy
+aws s3 mb s3://bucketname --region region  # Example regions: us-east-1, ap-east-1, eu-central-1, sa-east-1
+
+#Step 1 - Download a sample application
+sam init --runtime python3.7
+
+#Step 2 - Build your application
+cd sam-app
+sam build
+
+#Step 3 - Package your application
+sam package --output-template packaged.yaml --s3-bucket bucketname
+
+# Execute the following command to deploy the packaged template
+aws cloudformation deploy --template-file /home/sysadmin/sam/sam-app/packaged.yaml --stack-name <YOUR STACK NAME>
+
+#Step 4 - Deploy your application
+sam deploy --template-file packaged.yaml --region us-west-2 --capabilities CAPABILITY_IAM --stack-name aws-sam-getting-started
+
+There are three especially important files:
+
+    template.yaml: Contains the AWS SAM template that defines your application's AWS resources.
+
+    hello_world/app.py: Contains your actual Lambda handler logic.
+
+    hello_world/requirements.txt: Contains any Python dependencies that the application requires, and is used for sam build.
+
+curl https://ldku47k1e1.execute-api.us-west-2.amazonaws.com/Prod/hello/

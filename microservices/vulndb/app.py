@@ -42,8 +42,7 @@ def lambda_handler(event, context):
         #'DELETE': lambda dynamo, x: dynamo.delete_item(**x),
         'DELETE': lambda x: dynamo.del_query(x),
         'GET': lambda x: dynamo.get_query(x),
-        'POST': lambda x: dynamo.get_query(x),
-        #'POST': lambda x: dynamo.post_query(x),
+        'POST': lambda x: dynamo.post_query(x),
         'PUT': lambda x: dynamo.put_query(x)
     }
 

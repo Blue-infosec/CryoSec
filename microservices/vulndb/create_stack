@@ -1,0 +1,34 @@
+#!/bin/bash
+appname="vulndb"
+region="us-west-2"
+bucketname="vulndb7vjuthhndnvi5"
+if [ "$1" == "create" ]
+then
+    # Create Bucket
+    aws s3 mb s3://$bucketname --region $region
+    sam init --runtime python3.7
+    cd sam-app
+    sam build
+    sam package --output-template packaged.yaml --s3-bucket $bucketname
+    sam deploy --template-file packaged.yaml --region $region \
+      --capabilities CAPABILITY_IAM --stack-name $appname
+    aws cloudformation describe-stacks --stack-name vulndb --region us-west-2 --query "Stacks[].Outputs"
+elif [ "$1" == "modify" ]
+then
+    cd sam-app
+    sam build
+    sam package --output-template packaged.yaml --s3-bucket $bucketname
+    sam deploy --template-file packaged.yaml --region $region \
+      --capabilities CAPABILITY_IAM --stack-name $appname
+    aws cloudformation describe-stacks --stack-name vulndb --region us-west-2 --query "Stacks[].Outputs"
+elif [ "$1" == "delete" ]
+then
+    # Remove Bucket
+    aws s3 rb s3://$bucketname --region $region --force
+
+    # Remove Stack
+    aws cloudformation delete-stack --stack-name $appname
+else
+    echo 'USAGE: ./create_stack < create | modify | delete >'
+fi
+

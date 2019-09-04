@@ -1,0 +1,10 @@
+// DynamoDB Scan
+{
+  "httpMethod": "GET",
+  "queryStringParameters": {
+   "AttributesToGet": [ "status" ],
+   "ConsistentRead": true,
+   "ReturnConsumedCapacity": "TOTAL",
+   "TableName": "string"
+  }
+}

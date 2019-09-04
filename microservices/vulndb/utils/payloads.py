@@ -1,4 +1,7 @@
-{
+#!/usr/bin/env python3.7
+import json
+data = '''{
+  "httpMethod": "POST",
   "queryStringParameters": {
     "KeyConditionExpression": "stig_id = :item1",
     "ExpressionAttributeValues": {
@@ -10,4 +13,6 @@
     "ReturnConsumedCapacity": "TOTAL",
     "TableName": "checklist_redhat"
   }
-}
+}'''
+#payload = json.loads(data)
+payload = data
