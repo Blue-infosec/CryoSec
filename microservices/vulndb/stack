@@ -1,7 +1,14 @@
 #!/bin/bash
-appname="vulndb"
+appname="cf"
 region="us-west-2"
 bucketname="vulndb7vjuthhndnvi5"
+
+function test_stack {
+    url=$(aws cloudformation describe-stacks --stack-name cf --region us-west-2 --query "Stacks[].Outputs" | grep https | sed 's/"OutputValue": "//g' | sed 's/"//g' | awk '{$1=$1};1')
+    cat sam-app/events/SCAN_event.json > utils/event.json
+    ./utils/test_stack_deploy.sh "-X GET $url"
+}
+
 if [ "$1" == "create" ]
 then
     # Create Bucket
@@ -12,7 +19,7 @@ then
     sam package --output-template packaged.yaml --s3-bucket $bucketname
     sam deploy --template-file packaged.yaml --region $region \
       --capabilities CAPABILITY_IAM --stack-name $appname
-    aws cloudformation describe-stacks --stack-name vulndb --region us-west-2 --query "Stacks[].Outputs"
+    aws cloudformation describe-stacks --stack-name $appname --region us-west-2 --query "Stacks[].Outputs"
 elif [ "$1" == "modify" ]
 then
     cd sam-app
@@ -20,7 +27,8 @@ then
     sam package --output-template packaged.yaml --s3-bucket $bucketname
     sam deploy --template-file packaged.yaml --region $region \
       --capabilities CAPABILITY_IAM --stack-name $appname
-    aws cloudformation describe-stacks --stack-name vulndb --region us-west-2 --query "Stacks[].Outputs"
+    aws cloudformation describe-stacks --stack-name $appname --region us-west-2 --query "Stacks[].Outputs"
+    test_stack
 elif [ "$1" == "delete" ]
 then
     # Remove Bucket
@@ -28,7 +36,11 @@ then
 
     # Remove Stack
     aws cloudformation delete-stack --stack-name $appname
+    #rm -rf sam-app/
+elif [ "$1" == "test" ]
+then
+  test_stack
 else
-    echo 'USAGE: ./create_stack < create | modify | delete >'
+    echo 'USAGE: ./stack < create | modify | delete | test >'
 fi
 

@@ -1,0 +1,13 @@
+{
+  "body": "eyJ0ZXN0IjoiYm9keSJ9",
+  "httpMethod": "GET",
+  "queryStringParameters": {
+    "AttributesToGet": [
+      "stig_id",
+      "status"
+    ],
+    "ConsistentRead": true,
+    "ReturnConsumedCapacity": "TOTAL",
+    "TableName": "checklist_redhat"
+  }
+}
