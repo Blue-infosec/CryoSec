@@ -1,5 +1,5 @@
 {
-  "body": "eyJ0ZXN0IjoiYm9keSJ9",
+  "httpMethod":"GET",
   "queryStringParameters": {
     "KeyConditionExpression": "stig_id = :item1",
     "ExpressionAttributeValues": {
