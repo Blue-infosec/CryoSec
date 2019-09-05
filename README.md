@@ -68,7 +68,7 @@
 -->
 ---
 
-## Table of Contents (Optional)
+## Table of Contents <!--(Optional)-->
 
 <!-- > If you're `README` has a lot of info, section headers might be nice. -->
 
@@ -98,14 +98,17 @@ let generateProject = project => {
 -->
 
 ```bash
-# code away!
+cd microservices/vulndb
 
-let generateProject = project => {
-  let code = [];
-  for (let js = 0; js < project.length; js++) {
-    code.push(js);
-  }
-};
+# Create AWS Cloudformation CryoSec stack
+./stack create
+
+# Test the CryoSec stack & recieve response from created API
+./stack test
+{"message": "hello world"}
+
+# Tear Down Resources
+./stack delete
 ```
 
 ---
@@ -121,27 +124,15 @@ let generateProject = project => {
 
 ### Clone
 
-- Clone this repo to your local machine using `https://github.com/fvcproductions/SOMEREPO`
+- Clone this repo to your local machine using `https://github.com/DevManTillis/CryoSec`
 
 ### Setup
 
-- If you want more syntax highlighting, format your code like this:
-
-> update and install this package first
-
 ```shell
-$ brew update
-$ brew install fvcproductions
+$ aws configure
+$ cd CryoSec/microservices/vulndb
+$ ./stack create
 ```
-
-> now install npm and bower packages
-
-```shell
-$ npm install
-$ bower install
-```
-
-- For all the possible languages that support syntax highlithing on GitHub (which is basically all of them), refer <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml" target="_blank">here</a>.
 
 ---
 
@@ -152,8 +143,11 @@ $ bower install
 -->
 ## Tests (Optional)
 
-- Going into more detail on code and technologies used
-- I utilized this nifty <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheatsheet</a> for this sample `README`.
+```shell
+$ aws configure
+$ cd CryoSec/microservices/vulndb
+$ ./stack test
+```
 
 ---
 
@@ -163,11 +157,9 @@ $ bower install
 
 ### Step 1
 
-- **Option 1**
-    - 🍴 Fork this repo!
+- 🍴 Fork this repo!
 
-- **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/joanaz/HireDot2.git`
+- 👯 Clone this repo to your local machinee
 
 ### Step 2
 
@@ -175,7 +167,7 @@ $ bower install
 
 ### Step 3
 
-- 🔃 Create a new pull request using <a href="https://github.com/joanaz/HireDot2/compare/" target="_blank">`https://github.com/joanaz/HireDot2/compare/`</a>.
+- 🔃 Create a new pull request using <a href="https://github.com/jDevManTillis/compare" target="_blank">`https://github.com/DevManTillis/compare/`</a>.
 
 ---
 
@@ -209,7 +201,8 @@ $ bower install
 
 Reach out to me at one of the following places!
 
-- Website at <a href="http://tillisautomation.com" target="_blank">`tillisautomation.com`</a>
+- Website <a href="http://tillisautomation.com" target="_blank">`tillisautomation.com`</a>
+- Email <a href="http://tillisautomation.com" target="_blank">`info@tillisautomation.com`</a>
 <!-- - Twitter at <a href="http://twitter.com/fvcproductions" target="_blank">`@fvcproductions`</a>-->
 <!-- - Insert more social links here.-->
 
