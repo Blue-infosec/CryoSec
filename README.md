@@ -28,7 +28,7 @@
 -->
 <!--
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![Dependency Status](http://img.shields.io/gemnasium/badges/badgerbadgerbadger.svg?style=flat-square)](https://gemnasium.com/badges/badgerbadgerbadger) [![Coverage Status](http://img.shields.io/coveralls/badges/badgerbadgerbadger.svg?style=flat-square)](https://coveralls.io/r/badges/badgerbadgerbadger) [![Code Climate](http://img.shields.io/codeclimate/github/badges/badgerbadgerbadger.svg?style=flat-square)](https://codeclimate.com/github/badges/badgerbadgerbadger) [![Github Issues](http://githubbadges.herokuapp.com/badges/badgerbadgerbadger/issues.svg?style=flat-square)](https://github.com/badges/badgerbadgerbadger/issues) [![Pending Pull-Requests](http://githubbadges.herokuapp.com/badges/badgerbadgerbadger/pulls.svg?style=flat-square)](https://github.com/badges/badgerbadgerbadger/pulls) [![Gem Version](http://img.shields.io/gem/v/badgerbadgerbadger.svg?style=flat-square)](https://rubygems.org/gems/badgerbadgerbadger)
-- For more on these wonderful ~~badgers~~ badges, refer to <a href="http://badges.github.io/badgerbadgerbadger/" target="_blank">`badgerbadgerbadger`</a>. 
+- For more on these wonderful ~~badgers~~ badges, refer to <a href="http://badges.github.io/badgerbadgerbadger/" target="_blank">`badgerbadgerbadger`</a>.
 -->
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) [![Badges](http://img.shields.io/:badges-9/9-ff6799.svg?style=flat-square)](https://github.com/badges/badgerbadgerbadger)&nbsp;&nbsp;
 
@@ -68,23 +68,23 @@
 -->
 ---
 
-## Table of Contents (Optional)
+## Table of Contents <!--(Optional)-->
 
-> If you're `README` has a lot of info, section headers might be nice.
+<!-- > If you're `README` has a lot of info, section headers might be nice. -->
 
 - [Installation](#installation)
 - [Features](#features)
 - [Contributing](#contributing)
-- [Team](#team)
 - [FAQ](#faq)
 - [Support](#support)
 - [License](#license)
+<!-- - [Team](#team) -->
 
 
 ---
 
-## Example (Optional)
-
+## Example
+<!--
 ```javascript
 // code away!
 
@@ -95,47 +95,58 @@ let generateProject = project => {
   }
 };
 ```
+-->
+
+```bash
+cd microservices/vulndb
+
+# Create AWS Cloudformation CryoSec stack
+./stack create
+
+# Test the CryoSec stack & recieve response from created API
+./stack test
+{"message": "hello world"}
+
+# Tear Down Resources
+./stack delete
+```
 
 ---
 
 ## Installation
 
-- All the `code` required to get started
-- Images of what it should look like
+- Setup a RedHat based system with atleast 4GB RAM and 2 vCPUs
+- Install the AWS SAM Cli
+[AWS SAM Cli Install Directions](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html)
+- Install Docker Community Edition
+[Docker-CE Install directions]()
 
 ### Clone
 
-- Clone this repo to your local machine using `https://github.com/fvcproductions/SOMEREPO`
+- Clone this repo to your local machine using `https://github.com/DevManTillis/CryoSec`
 
 ### Setup
 
-- If you want more syntax highlighting, format your code like this:
-
-> update and install this package first
-
 ```shell
-$ brew update
-$ brew install fvcproductions
+$ aws configure
+$ cd CryoSec/microservices/vulndb
+$ ./stack create
 ```
-
-> now install npm and bower packages
-
-```shell
-$ npm install
-$ bower install
-```
-
-- For all the possible languages that support syntax highlithing on GitHub (which is basically all of them), refer <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml" target="_blank">here</a>.
 
 ---
 
+<!--
 ## Features
 ## Usage (Optional)
 ## Documentation (Optional)
+-->
 ## Tests (Optional)
 
-- Going into more detail on code and technologies used
-- I utilized this nifty <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheatsheet</a> for this sample `README`.
+```shell
+$ aws configure
+$ cd CryoSec/microservices/vulndb
+$ ./stack test
+```
 
 ---
 
@@ -145,11 +156,9 @@ $ bower install
 
 ### Step 1
 
-- **Option 1**
-    - 🍴 Fork this repo!
+- 🍴 Fork this repo!
 
-- **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/joanaz/HireDot2.git`
+- 👯 Clone this repo to your local machinee
 
 ### Step 2
 
@@ -157,28 +166,29 @@ $ bower install
 
 ### Step 3
 
-- 🔃 Create a new pull request using <a href="https://github.com/joanaz/HireDot2/compare/" target="_blank">`https://github.com/joanaz/HireDot2/compare/`</a>.
+- 🔃 Create a new pull request using <a href="https://github.com/jDevManTillis/compare" target="_blank">`https://github.com/DevManTillis/compare/`</a>.
 
 ---
 
-## Team
+<!-- ## Team -->
 
 <!-- > Or Contributors/People -->
-
-| <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> |
+<!--
+| <a href="http://fvcproductions.com" target="_blank">**Founder & DevSecOps Architect**</a> | <a href="http://fvcproductions.com" target="_blank">**Python Developer**</a> |
 | :---: |:---: |
-| [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)    | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) |
-| <a href="http://github.com/fvcproductions" target="_blank">`github.com/DevManTillis`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/nbatlle`</a> |
+| [![devmantillis](https://avatars2.githubusercontent.com/u/15160643?s=200&v=4)](http://github.com/DevManTillis)    | [![nbatlle](https://raw.githubusercontent.com/DevManTillis/CryoSec/dev/files/nbatlle.png?s=200)](http://github.com/nbatlle) |
+| <a href="http://github.com/DevManTillis" target="_blank">`github.com/DevManTillis`</a> | <a href="http://github.com/nbatlle" target="_blank">`github.com/nbatlle`</a> |
+-->
 <!--
 
 | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)    | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)  |
 | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> |
--->
+
 - You can just grab their GitHub profile image URL
 - You should probably resize their picture using `?s=200` at the end of the image URL.
 
 ---
-
+-->
 ## FAQ
 
 - **How do I do *specifically* so and so?**
@@ -190,7 +200,8 @@ $ bower install
 
 Reach out to me at one of the following places!
 
-- Website at <a href="http://tillisautomation.com" target="_blank">`tillisautomation.com`</a>
+- Website <a href="http://tillisautomation.com" target="_blank">`tillisautomation.com`</a>
+- Email <a href="http://tillisautomation.com" target="_blank">`info@tillisautomation.com`</a>
 <!-- - Twitter at <a href="http://twitter.com/fvcproductions" target="_blank">`@fvcproductions`</a>-->
 <!-- - Insert more social links here.-->
 
