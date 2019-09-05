@@ -75,10 +75,10 @@
 - [Installation](#installation)
 - [Features](#features)
 - [Contributing](#contributing)
-<!-- - [Team](#team) -->
 - [FAQ](#faq)
 - [Support](#support)
 - [License](#license)
+<!-- - [Team](#team) -->
 
 
 ---
@@ -120,7 +120,6 @@ cd microservices/vulndb
 [AWS SAM Cli Install Directions](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html)
 - Install Docker Community Edition
 [Docker-CE Install directions]()
-- Images of what it should look like
 
 ### Clone
 
