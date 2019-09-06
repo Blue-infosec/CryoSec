@@ -2,8 +2,27 @@
 
 from xml.dom.minidom import parse, parseString, getDOMImplementation
 
+
+
 impl =                          getDOMImplementation()
 newdoc =                        impl.createDocument(None, "CHECKLIST", None)
+
+###
+#define Node class
+###
+
+class Node:
+        def __init__(self, docElement, children):
+                self.docElement =       docElement
+                self.children =         children
+
+        def appendChildrenList(self):
+                [ self.docElement.appendChild(item) for item in self.children ]
+
+
+###
+#define variables for all XML elements
+###
 
 #body
 checklist =                     newdoc.documentElement
@@ -55,15 +74,21 @@ severity_justification =        newdoc.createElement("SEVERITY_JUSTIFICATION")
 vuln_attribute =                newdoc.createElement("VULN_ATTRIBUTE")
 attribute_data =                newdoc.createElement("ATTRIBUTE_DATA")
 
-### insert new variables above this line ###
-### insert lists and appends below this line ###
+###
+#define all lists and appends
+###
 
+"""
 checklist_elements = [
         asset,
         stigs
 ]
 [ checklist.appendChild(item) for item in checklist_elements ]
+"""
+Checklist = Node(checklist, [asset, stigs])
+Checklist.appendChildrenList()
 
+"""
 asset_elements = [
         role,
         asset_type,
@@ -78,23 +103,43 @@ asset_elements = [
         web_db_instance
         ]
 [ asset.appendChild(item) for item in asset_elements ]
+"""
+Asset = Node(asset, [role, asset_type, host_name, host_ip, host_mac, host_fqdn, tech_area, target_key, web_or_database, web_db_site, web_db_instance])
+Asset.appendChildrenList()
 
+"""
 stigs.appendChild(istig)
+"""
+Stigs = Node(stigs, [istig])
+Stigs.appendChildrenList()
 
+"""
 istig_elements = [
         stig_info,
         vuln
 ]
 [ istig.appendChild(item) for item in istig_elements ]
+"""
+Istig = Node(istig, [stig_info, vuln])
+Istig.appendChildrenList()
 
-stig_data.appendChild(si_data)
+"""
+stig_info.appendChild(si_data)
+"""
+Stig_Info = Node(stig_info, [si_data])
+Stig_Info.appendChildrenList()
 
+"""
 si_data_elements =[
 	sid_name,
 	sid_data
 ] 
 [ si_data.appendChild(item) for item in si_data_elements ]
+"""
+Si_Data = Node(si_data, [sid_name, sid_data])
+Si_Data.appendChildrenList()
 
+"""
 vuln_elements = [
 	stig_data,
 	status,
@@ -104,12 +149,20 @@ vuln_elements = [
         severity_justification
 ]
 [ vuln.appendChild(item) for item in vuln_elements ]
+"""
+Vuln = Node(vuln, [stig_data, status, finding_details, comments, severity_override, severity_justification])
+Vuln.appendChildrenList()
 
+"""
 stig_data_elements = [
 	vuln_attribute,
 	attribute_data
 ]
 [ stig_data.appendChild(item) for item in stig_data_elements]
+"""
+Stig_Data = Node(stig_data, [vuln_attribute, attribute_data])
+Stig_Data.appendChildrenList()
+
 
 #text = newdoc.createTextNode('Some textual content.')
 
