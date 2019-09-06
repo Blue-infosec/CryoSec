@@ -31,6 +31,7 @@ Resources:
       PolicyName: AWSDynamoDBVulnDBPolicy
       Roles:
         - AWSDynamoDBVulnDBRole
+    DependsOn: IAMP4G4TE
   IAMP4G4TG:
     Type: 'AWS::IAM::Policy'
     Properties:
@@ -49,4 +50,5 @@ Resources:
       PolicyName: AWSLambdaMicroserviceExecutionRole
       Roles:
         - AWSDynamoDBVulnDBRole
+    DependsOn: IAMP4G4TE
 

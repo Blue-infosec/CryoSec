@@ -4,9 +4,22 @@ region="us-west-2"
 bucketname="vulndb7vjuthhndnvi5"
 
 function test_stack {
-    url=$(aws cloudformation describe-stacks --stack-name cf --region us-west-2 --query "Stacks[].Outputs" | grep https | sed 's/"OutputValue": "//g' | sed 's/"//g' | awk '{$1=$1};1')
-    cat sam-app/events/SCAN_event.json > utils/event.json
-    ./utils/test_stack_deploy.sh "-X GET $url"
+    url="https://omdul8jp29.execute-api.us-west-2.amazonaws.com/default/vulndb"
+    #url=$(aws cloudformation describe-stacks --stack-name cf --region us-west-2 --query "Stacks[].Outputs" | grep https | sed 's/"OutputValue": "//g' | sed 's/"//g' | awk '{$1=$1};1')
+    #cat sam-app/events/SCAN_event.json > utils/event.json
+    echo "GET Test"
+    ./utils/test_stack_deploy.sh "-i -X GET $url"
+    echo ""
+    echo ""
+    echo "POST Test"
+    ./utils/test_stack_deploy.sh "-i -X POST -d @utils/POST_event.json $url"
+    echo ""
+    echo ""
+    echo "PUT Test"
+    echo ""
+    echo ""
+    echo "DELETE Test"
+    echo ""
 }
 
 if [ "$1" == "create" ]
