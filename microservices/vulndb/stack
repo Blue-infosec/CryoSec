@@ -5,8 +5,9 @@ bucketname="vulndb7vjuthhndnvi5"
 
 function test_stack {
     url=$(aws cloudformation describe-stacks --stack-name cf --region us-west-2 --query "Stacks[].Outputs" | grep https | sed 's/"OutputValue": "//g' | sed 's/"//g' | awk '{$1=$1};1')
-    cat sam-app/events/SCAN_event.json > utils/event.json
+    #cat sam-app/events/SCAN_event.json > utils/event.json
     ./utils/test_stack_deploy.sh "-X GET $url"
+    echo ""
 }
 
 if [ "$1" == "create" ]
