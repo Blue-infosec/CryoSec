@@ -1,9 +1,3 @@
 {
-    "AttributesToGet": [
-      "stig_id",
-      "status"
-    ],
-    "ConsistentRead": true,
-    "ReturnConsumedCapacity": "TOTAL",
     "TableName": "checklist_redhat"
 }

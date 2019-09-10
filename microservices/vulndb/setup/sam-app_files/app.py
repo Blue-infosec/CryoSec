@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import boto3
 import json
 
@@ -28,17 +26,7 @@ def lambda_handler(event, context):
     DynamoDB API as a JSON body.
     '''
     #print("Received event: " + json.dumps(event, indent=2))
-    sparams = '''{
-    "AttributesToGet": [
-      "stig_id",
-      "status"
-    ],
-    "ConsistentRead": true,
-    "ReturnConsumedCapacity": "TOTAL",
-    "TableName": "checklist_redhat"
-    }
-    '''
-    scan_params = json.loads(sparams)
+
     operations = {
         'DELETE': lambda dynamo, x: dynamo.delete_item(**x),
         'GET': lambda dynamo, x: dynamo.scan(**x),
@@ -48,16 +36,9 @@ def lambda_handler(event, context):
 
     operation = event['httpMethod']
     if operation in operations:
-        payload = event['queryStringParameters'] if operation else json.loads(event['body'])
-        if operation == 'GET':
-            return respond(None,operations[operation](dynamo,scan_params))
-        elif operation == 'POST':
-            #post_params = json.loads(event['body'])
-            #return respond(None,operations['POST'](dynamo,event['queryStringParameters']))
-            dynamo.put_item(**json.loads(event['body']))
-            return respond(None,event['body'])
-
-        #== 'GET' else json.loads(event['body'])
+        #payload = event['queryStringParameters'] if operation == 'GET' else json.loads(event['body'])#json.dumps(event['body'])# json.loads(event['body'])
+        payload = json.loads(event['body'])#json.dumps(event['body'])# json.loads(event['body'])
+        return respond(None, operations[operation](dynamo, payload))
     else:
         return respond(ValueError('Unsupported method "{}"'.format(operation)))
 

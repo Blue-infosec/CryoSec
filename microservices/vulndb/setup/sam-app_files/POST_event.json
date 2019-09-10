@@ -1,5 +1,4 @@
 {
-  "httpMethod":"POST",
   "TableName": "checklist_redhat",
     "Item": {
        "stig_id": {"S":"RHEL-07-010090"},
