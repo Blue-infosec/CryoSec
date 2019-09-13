@@ -1,8 +1,3 @@
-
-
-
-from __future__ import print_function
-
 import boto3
 import json
 
@@ -34,15 +29,15 @@ def lambda_handler(event, context):
 
     operations = {
         'DELETE': lambda dynamo, x: dynamo.delete_item(**x),
-        'GET': lambda dynamo, x: dynamo.query(**x),
-        #'GET': lambda dynamo, x: dynamo.scan('stig_id'),
+        'GET': lambda dynamo, x: dynamo.scan(**x),
         'POST': lambda dynamo, x: dynamo.put_item(**x),
         'PUT': lambda dynamo, x: dynamo.update_item(**x),
     }
 
     operation = event['httpMethod']
     if operation in operations:
-        payload = event['queryStringParameters'] if operation == 'GET' else json.loads(event['body'])
+        #payload = event['queryStringParameters'] if operation == 'GET' else json.loads(event['body'])#json.dumps(event['body'])# json.loads(event['body'])
+        payload = json.loads(event['body'])#json.dumps(event['body'])# json.loads(event['body'])
         return respond(None, operations[operation](dynamo, payload))
     else:
         return respond(ValueError('Unsupported method "{}"'.format(operation)))

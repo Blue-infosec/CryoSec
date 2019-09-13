@@ -6,7 +6,7 @@
 
 # CryoSec
 
-> System & application hardening automation simplified. Cyber secuirty toolset.
+> AWS cloud based system & application hardening automation simplified.
 
 <!-- > ideally one sentence -->
 
@@ -105,7 +105,6 @@ cd microservices/vulndb
 
 # Test the CryoSec stack & recieve response from created API
 ./stack test
-{"message": "hello world"}
 
 # Tear Down Resources
 ./stack delete
@@ -130,6 +129,9 @@ cd microservices/vulndb
 ```shell
 $ aws configure
 $ cd CryoSec/microservices/vulndb
+$ ./stack create
+
+$ cd CryoSec/microservices/genckl
 $ ./stack create
 ```
 

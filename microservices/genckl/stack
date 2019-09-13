@@ -1,38 +1,41 @@
 #!/bin/bash
-appname="vulndb"
+appname="genckl"
 region="us-west-2"
 bucketname="${appname}7vjuthhndnvi5"
 
 function test_stack {
-    url=$(aws cloudformation describe-stacks --stack-name $appname --region us-west-2 --query "Stacks[].Outputs" | grep https | sed 's/"OutputValue": "//g' | sed 's/"//g' | sed -e 's/\/$//' | awk '{$1=$1};1')
+    #url="https://3cg0j7c560.execute-api.us-west-2.amazonaws.com/default/tester"
+    #url="https://omdul8jp29.execute-api.us-west-2.amazonaws.com/default/vulndb"
+    url=$(aws cloudformation describe-stacks --stack-name $appname --region us-west-2 --query "Stacks[].Outputs" | grep https | sed 's/"OutputValue": "//g' | sed 's/"//g' | awk '{$1=$1};1')
     echo "GET Test"
-    curl -i -X GET \
-      -H "Content-Type: application/json" \
-      "${url}?TableName=checklist_redhat"
-    echo ""
-    echo "POST Test"
-    curl -i -X POST -d @setup/sam-app_files/POST_event.json \
+    curl -i -X GET -d @setup/sam-app_files/GET_event.json \
       -H "Accept: application/json" \
       -H "Content-Type: application/json" \
       $url
     echo ""
     echo ""
-    echo "PUT Test"
-    curl -i -X PUT -d @setup/sam-app_files/PUT_event.json \
-      -H "Accept: application/json" \
-      -H "Content-Type: application/json" \
-      $url
-    echo ""
-    echo ""
-    echo "DELETE Test"
-    curl -i -X DELETE -d @setup/sam-app_files/DELETE_event.json \
-      -H "Accept: application/json" \
-      -H "Content-Type: application/json" \
-      $url
-    echo ""
-    echo ""
+#    echo "POST Test"
+#    curl -i -X POST -d @setup/sam-app_files/POST_event.json \
+#      -H "Accept: application/json" \
+#      -H "Content-Type: application/json" \
+#      $url
+#    echo ""
+#    echo ""
+#    echo "PUT Test"
+#    curl -i -X PUT -d @setup/sam-app_files/PUT_event.json \
+#      -H "Accept: application/json" \
+#      -H "Content-Type: application/json" \
+#      $url
+#    echo ""
+#    echo ""
+#    echo "DELETE Test"
+#    curl -i -X DELETE -d @setup/sam-app_files/DELETE_event.json \
+#      -H "Accept: application/json" \
+#      -H "Content-Type: application/json" \
+#      $url
+#    echo ""
+#    echo ""
 }
-
 
 function deploy_stack {
     cd $appname
@@ -44,17 +47,15 @@ function deploy_stack {
 
 }
 
-
 if [ "$1" == "create" ]
 then
     # Create Bucket
     aws s3 mb s3://$bucketname --region $region
-    #sam init --runtime python3.7
     deploy_stack
 elif [ "$1" == "modify" ]
 then
-    #aws s3 mb s3://$bucketname --region $region
     deploy_stack
+    #test_stack
 elif [ "$1" == "delete" ]
 then
     # Remove Bucket
