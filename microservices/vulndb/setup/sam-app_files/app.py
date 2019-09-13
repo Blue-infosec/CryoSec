@@ -36,9 +36,10 @@ def lambda_handler(event, context):
 
     operation = event['httpMethod']
     if operation in operations:
-        #payload = event['queryStringParameters'] if operation == 'GET' else json.loads(event['body'])#json.dumps(event['body'])# json.loads(event['body'])
-        payload = json.loads(event['body'])#json.dumps(event['body'])# json.loads(event['body'])
+        payload = event['queryStringParameters'] if operation == 'GET' else json.loads(event['body'])#json.dumps(event['body'])# json.loads(event['body'])
+        #payload = json.loads(event['body'])#json.dumps(event['body'])# json.loads(event['body'])
         return respond(None, operations[operation](dynamo, payload))
     else:
         return respond(ValueError('Unsupported method "{}"'.format(operation)))
+
 

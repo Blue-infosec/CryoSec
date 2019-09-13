@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'vulndb app
+
+  Modify vulnerability status via API
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Outputs:
+  VulnDBApi:
+    Description: API Gateway endpoint URL for Prod stage for VulnDB function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/vulndb/
+  VulnDBFunction:
+    Description: VulnDB Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - VulnDBFunction
+      - Arn
+  VulnDBFunctionIamRole:
+    Description: Implicit IAM Role created for VulnDB function
+    Value:
+      Fn::GetAtt:
+      - VulnDBFunctionRole
+      - Arn
+Resources:
+  VulnDBFunction:
+    Properties:
+      CodeUri: s3://vulndb7vjuthhndnvi5/0b6cda51509d34c7b7f9c00c63aadab6
+      Events:
+        VulnDB:
+          Properties:
+            Method: ANY
+            Path: /vulndb
+          Type: Api
+      Handler: app.lambda_handler
+      Policies:
+      - DynamoDBCrudPolicy:
+          AccountId: ${AWS::AccountId}
+          Partition: AWS
+          Region: ${AWS::Region}
+          TableName: checklist_redhat
+      - DynamoDBReadPolicy:
+          AccountId: ${AWS::AccountId}
+          Partition: AWS
+          Region: ${AWS::Region}
+          TableName: checklist_redhat
+      Runtime: python3.7
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

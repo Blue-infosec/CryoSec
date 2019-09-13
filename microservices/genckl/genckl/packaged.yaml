@@ -1,40 +1,46 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'sam-app
+Description: 'genckl
 
-  Sample SAM Template for sam-app
+  Sample SAM Template for genckl
 
   '
 Globals:
   Function:
     Timeout: 3
 Outputs:
-  HelloWorldApi:
+  GenCklApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
     Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
-  HelloWorldFunction:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/genckl/
+  GenCklFunction:
     Description: Hello World Lambda Function ARN
     Value:
       Fn::GetAtt:
-      - HelloWorldFunction
+      - GenCklFunction
       - Arn
-  HelloWorldFunctionIamRole:
+  GenCklFunctionIamRole:
     Description: Implicit IAM Role created for Hello World function
     Value:
       Fn::GetAtt:
-      - HelloWorldFunctionRole
+      - GenCklFunctionRole
       - Arn
 Resources:
-  HelloWorldFunction:
+  GenCklFunction:
     Properties:
-      CodeUri: s3://vulndb7vjuthhndnvi5/506cf07c94854e54ce2cd6a722e15503
+      CodeUri: s3://genckl7vjuthhndnvi5/5a6e901023a341f58a86c1cd1513504d
       Events:
-        HelloWorld:
+        GenCkl:
           Properties:
             Method: get
-            Path: /hello
+            Path: /genckl
           Type: Api
       Handler: app.lambda_handler
+      Policies:
+      - DynamoDBCrudPolicy:
+          AccountId: ${AWS::AccountId}
+          Partition: AWS
+          Region: ${AWS::Region}
+          TableName: checklist_redhat
       Runtime: python3.7
     Type: AWS::Serverless::Function
 Transform: AWS::Serverless-2016-10-31

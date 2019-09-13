@@ -1,3 +1,5 @@
 {
-    "TableName": "checklist_redhat"
+  "queryStringParameters": {
+  "TableName": "checklist_redhat"
+  }
 }
