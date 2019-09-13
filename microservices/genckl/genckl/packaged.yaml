@@ -27,7 +27,7 @@ Outputs:
 Resources:
   GenCklFunction:
     Properties:
-      CodeUri: s3://genckl7vjuthhndnvi5/5a6e901023a341f58a86c1cd1513504d
+      CodeUri: s3://genckl7vjuthhndnvi5/64131ef7a1e1d25e36a24384f6278e40
       Events:
         GenCkl:
           Properties:
@@ -37,6 +37,11 @@ Resources:
       Handler: app.lambda_handler
       Policies:
       - DynamoDBCrudPolicy:
+          AccountId: ${AWS::AccountId}
+          Partition: AWS
+          Region: ${AWS::Region}
+          TableName: checklist_redhat
+      - DynamoDBReadPolicy:
           AccountId: ${AWS::AccountId}
           Partition: AWS
           Region: ${AWS::Region}

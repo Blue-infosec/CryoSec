@@ -29,6 +29,12 @@ Resources:
             Region: ${AWS::Region}
             AccountId: ${AWS::AccountId}
             TableName: checklist_redhat
+        - DynamoDBReadPolicy:
+            Partition: AWS
+            Region: ${AWS::Region}
+            AccountId: ${AWS::AccountId}
+            TableName: checklist_redhat
+
 
 
 

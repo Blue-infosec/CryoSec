@@ -14,27 +14,27 @@ function test_stack {
       $url
     echo ""
     echo ""
-    echo "POST Test"
-    curl -i -X POST -d @setup/sam-app_files/POST_event.json \
-      -H "Accept: application/json" \
-      -H "Content-Type: application/json" \
-      $url
-    echo ""
-    echo ""
-    echo "PUT Test"
-    curl -i -X PUT -d @setup/sam-app_files/PUT_event.json \
-      -H "Accept: application/json" \
-      -H "Content-Type: application/json" \
-      $url
-    echo ""
-    echo ""
-    echo "DELETE Test"
-    curl -i -X DELETE -d @setup/sam-app_files/DELETE_event.json \
-      -H "Accept: application/json" \
-      -H "Content-Type: application/json" \
-      $url
-    echo ""
-    echo ""
+#    echo "POST Test"
+#    curl -i -X POST -d @setup/sam-app_files/POST_event.json \
+#      -H "Accept: application/json" \
+#      -H "Content-Type: application/json" \
+#      $url
+#    echo ""
+#    echo ""
+#    echo "PUT Test"
+#    curl -i -X PUT -d @setup/sam-app_files/PUT_event.json \
+#      -H "Accept: application/json" \
+#      -H "Content-Type: application/json" \
+#      $url
+#    echo ""
+#    echo ""
+#    echo "DELETE Test"
+#    curl -i -X DELETE -d @setup/sam-app_files/DELETE_event.json \
+#      -H "Accept: application/json" \
+#      -H "Content-Type: application/json" \
+#      $url
+#    echo ""
+#    echo ""
 }
 
 function deploy_stack {

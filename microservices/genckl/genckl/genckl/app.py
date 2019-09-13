@@ -1,5 +1,5 @@
 import json
-
+from genckly import Node
 # import requests
 
 
@@ -32,6 +32,9 @@ def lambda_handler(event, context):
     #     print(e)
 
     #     raise e
+
+    #checklist = Node()
+    #checklist.return_doc()
 
     return {
         "statusCode": 200,

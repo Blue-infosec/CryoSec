@@ -1,5 +1,3 @@
-#!/usr/bin/env python3.7
-
 from xml.dom.minidom import parse, parseString, getDOMImplementation
 
 
@@ -103,5 +101,5 @@ class Node:
         print(self.gen_checklist())
 
 
-checklist = Node()
-checklist.return_doc()
+#checklist = Node()
+#checklist.return_doc()
