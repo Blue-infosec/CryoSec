@@ -128,6 +128,7 @@ cd microservices/vulndb
 ### Setup
 
 ```shell
+# Further instruction coming soon...
 # Modify vulnerabilty item status via web request
 $ aws configure
 $ cd CryoSec/microservices/vulndb
