@@ -98,6 +98,7 @@ let generateProject = project => {
 -->
 
 ```bash
+# Modify vulnerabilty item status via REST web request
 cd microservices/vulndb
 
 # Create AWS Cloudformation CryoSec stack
@@ -127,10 +128,12 @@ cd microservices/vulndb
 ### Setup
 
 ```shell
+# Modify vulnerabilty item status via web request
 $ aws configure
 $ cd CryoSec/microservices/vulndb
 $ ./stack create
 
+# Generate a checklist via web request
 $ cd CryoSec/microservices/genckl
 $ ./stack create
 ```
