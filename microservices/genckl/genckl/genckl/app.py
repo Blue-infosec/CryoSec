@@ -1,5 +1,6 @@
+#!/usr/bin/env python3.7
 import json
-from genckly import Node
+from genckl import Node
 # import requests
 
 
@@ -33,13 +34,11 @@ def lambda_handler(event, context):
 
     #     raise e
 
-    #checklist = Node()
-    #checklist.return_doc()
+    checklist = Node()
 
     return {
         "statusCode": 200,
         "body": json.dumps({
-            "message": "hello world",
-            # "location": ip.text.replace("\n", "")
+            "checklist": checklist.showdoc,
         }),
     }

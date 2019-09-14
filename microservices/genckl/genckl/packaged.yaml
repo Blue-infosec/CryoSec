@@ -27,11 +27,11 @@ Outputs:
 Resources:
   GenCklFunction:
     Properties:
-      CodeUri: s3://genckl7vjuthhndnvi5/64131ef7a1e1d25e36a24384f6278e40
+      CodeUri: s3://genckl7vjuthhndnvi5/b3c0aea1bf9635d579fcd215e705e70d
       Events:
         GenCkl:
           Properties:
-            Method: get
+            Method: ANY
             Path: /genckl
           Type: Api
       Handler: app.lambda_handler

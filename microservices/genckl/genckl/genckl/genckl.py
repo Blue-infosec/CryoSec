@@ -1,3 +1,5 @@
+#!/usr/bin/env python3.7
+
 from xml.dom.minidom import parse, parseString, getDOMImplementation
 
 
@@ -97,9 +99,10 @@ class Node:
 
         return self.newdoc.toprettyxml()
 
-    def return_doc(self):
-        print(self.gen_checklist())
+    @property
+    def showdoc(self):
+        return self.gen_checklist()
 
 
 #checklist = Node()
-#checklist.return_doc()
+#print(checklist.showdoc)

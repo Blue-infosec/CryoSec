@@ -7,34 +7,13 @@ function test_stack {
     #url="https://3cg0j7c560.execute-api.us-west-2.amazonaws.com/default/tester"
     #url="https://omdul8jp29.execute-api.us-west-2.amazonaws.com/default/vulndb"
     url=$(aws cloudformation describe-stacks --stack-name $appname --region us-west-2 --query "Stacks[].Outputs" | grep https | sed 's/"OutputValue": "//g' | sed 's/"//g' | awk '{$1=$1};1')
-    echo "GET Test"
-    curl -i -X GET -d @setup/sam-app_files/GET_event.json \
+    echo "POST Test"
+    curl -i -X POST -d @setup/sam-app_files/POST_event.json \
       -H "Accept: application/json" \
       -H "Content-Type: application/json" \
       $url
     echo ""
     echo ""
-#    echo "POST Test"
-#    curl -i -X POST -d @setup/sam-app_files/POST_event.json \
-#      -H "Accept: application/json" \
-#      -H "Content-Type: application/json" \
-#      $url
-#    echo ""
-#    echo ""
-#    echo "PUT Test"
-#    curl -i -X PUT -d @setup/sam-app_files/PUT_event.json \
-#      -H "Accept: application/json" \
-#      -H "Content-Type: application/json" \
-#      $url
-#    echo ""
-#    echo ""
-#    echo "DELETE Test"
-#    curl -i -X DELETE -d @setup/sam-app_files/DELETE_event.json \
-#      -H "Accept: application/json" \
-#      -H "Content-Type: application/json" \
-#      $url
-#    echo ""
-#    echo ""
 }
 
 function deploy_stack {
