@@ -34,6 +34,38 @@ Resources:
             Region: ${AWS::Region}
             AccountId: ${AWS::AccountId}
             TableName: checklist_redhat
+  myDynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: "checklist_redhat"
+      AttributeDefinitions:
+        -
+          AttributeName: "stig_id"
+          AttributeType: "S"
+        -
+          AttributeName: "stig_status"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "stig_id"
+          KeyType: "HASH"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+      GlobalSecondaryIndexes:
+        -
+          IndexName: "myGSI"
+          KeySchema:
+            -
+              AttributeName: "stig_status"
+              KeyType: "HASH"
+          Projection:
+            NonKeyAttributes:
+              - "stig_id"
+            ProjectionType: "INCLUDE"
+          ProvisionedThroughput:
+            ReadCapacityUnits: "5"
+            WriteCapacityUnits: "5"
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
