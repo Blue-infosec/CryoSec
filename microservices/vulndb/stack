@@ -10,6 +10,7 @@ function test_stack {
       -H "Content-Type: application/json" \
       "${url}?TableName=checklist_redhat"
     echo ""
+    echo ""
     echo "POST Test"
     curl -i -X POST -d @setup/sam-app_files/POST_event.json \
       -H "Accept: application/json" \
@@ -41,7 +42,6 @@ function deploy_stack {
     sam deploy --template-file packaged.yaml --region $region \
       --capabilities CAPABILITY_IAM --stack-name $appname
     aws cloudformation describe-stacks --stack-name $appname --region us-west-2 --query "Stacks[].Outputs"
-
 }
 
 
@@ -51,6 +51,7 @@ then
     aws s3 mb s3://$bucketname --region $region
     #sam init --runtime python3.7
     deploy_stack
+    aws dynamodb batch-write-item --request-items file://db_data.json
 elif [ "$1" == "modify" ]
 then
     #aws s3 mb s3://$bucketname --region $region
