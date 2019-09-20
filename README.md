@@ -98,13 +98,15 @@ let generateProject = project => {
 -->
 
 ```bash
-# Modify vulnerabilty item status via REST web request
 cd microservices/vulndb
 
 # Create AWS Cloudformation CryoSec stack
 ./stack create
 
-# Test the CryoSec stack & recieve response from created API
+# Redeploy your stack with code/config modifications
+./stack modify
+
+# Test the CryoSec stack & recieve a response from the API
 ./stack test
 
 # Tear Down Resources
@@ -128,15 +130,19 @@ cd microservices/vulndb
 ### Setup
 
 ```shell
-# Further instruction coming soon...
-# Modify vulnerabilty item status via web request
 $ aws configure
 $ cd CryoSec/microservices/vulndb
+# Modify your app name and AWS deployment region (app name vulndb is already taken)
+$ vim stack.config
+
+# Create / Test the functionality of the stack
 $ ./stack create
+$ ./stack test
 
 # Generate a checklist via web request
 $ cd CryoSec/microservices/genckl
 $ ./stack create
+$ ./stack test
 ```
 
 ---

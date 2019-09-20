@@ -1,6 +1,7 @@
 #!/bin/bash
-appname="vulndb"
-region="us-west-2"
+
+appname=$(cat stack.config | awk 'NR==1{print $1}' | awk -F= '{ print $NF }' | sed 's/\"//g')
+region=$(cat stack.config | awk 'NR==2{print $1}' | awk -F= '{ print $NF }' | sed 's/\"//g')
 bucketname="${appname}7vjuthhndnvi5"
 
 function test_stack {
