@@ -1,0 +1,71 @@
+Resources:
+  IAMP4G4TD:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: codestar_dev
+      Path: "/"
+  IAMP4G4TE:
+    Type: AWS::IAM::Group
+    Properties:
+      GroupName: lambda_dev
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AWSLambdaFullAccess
+        - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
+      Path: "/"
+  IAMP4G4TF:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action:
+              - "apigateway:PATCH"
+              - "apigateway:DELETE"
+              - "apigateway:PUT"
+              - "apigateway:POST"
+              - "apigateway:GET"
+              - "iam:AttachRolePolicy"
+              - "iam:DetachRolePolicy"
+              - "iam:CreateRole"
+              - "iam:DeleteRole"
+              - "organizations:DescribeAccount"
+              - "organizations:DescribeOrganization"
+              - "organizations:DescribeOrganizationalUnit"
+              - "organizations:ListChildren"
+              - "organizations:ListParents"
+              - "organizations:ListPoliciesForTarget"
+              - "organizations:ListRoots"
+              - "organizations:ListPolicies"
+              - "organizations:ListTargetsForPolicy"
+            Resource: "*"
+      PolicyName: APIGatewayIAMDevLambda
+      Groups:
+        - lambda_dev
+    DependsOn: IAMP4G4TE
+  IAMP4G4TG:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action:
+              - "codestar:*"
+              - "ec2:DescribeKeyPairs"
+              - "ec2:DescribeVpcs"
+              - "ec2:DescribeSubnets"
+              - "ec2:CreateKeyPair"
+              - "ec2:ImportKeyPair"
+              - "cloud9:DescribeEnvironment*"
+              - "cloud9:ValidateEnvironmentName"
+              - "cloudformation:DescribeStack*"
+              - "cloudformation:GetTemplateSummary"
+            Resource: "*"
+      PolicyName: APIGatewayIAMDevCodestar
+      Groups:
+        - codestar_dev
+    DependsOn: IAMP4G4TD
+

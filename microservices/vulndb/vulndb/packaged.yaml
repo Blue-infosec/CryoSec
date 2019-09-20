@@ -27,7 +27,7 @@ Outputs:
 Resources:
   VulnDBFunction:
     Properties:
-      CodeUri: s3://vulndb7vjuthhndnvi5/99a10fb6eca4807104617c652a4d0298
+      CodeUri: s3://vulndb7vjuthhndnvi5/958246ca07ac756053f03800b10d3fac
       Events:
         VulnDB:
           Properties:

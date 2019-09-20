@@ -1,0 +1,13 @@
+{
+  "queryStringParameters": {
+    "TableName":"checklist_redhat",
+    "Item": {
+      "stig_id": {
+        "S": "RHEL-07-010030"
+      },
+      "status": {
+        "S": "Test Value"
+      }
+    }
+  }
+}

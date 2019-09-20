@@ -1,0 +1,7 @@
+{
+  "TableName": "checklist_redhat",
+    "Item": {
+       "stig_id": {"S":"RHEL-07-010090"},
+       "stig_status": {"S":"tester"}
+      }
+}

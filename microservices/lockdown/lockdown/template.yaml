@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  uploadckl app
+  lockdown app
 
   Modify vulnerability status via API
 
@@ -11,17 +11,17 @@ Globals:
     Timeout: 3
 
 Resources:
-  UploadCklFunction:
+  LockDownFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: uploadckl/
+      CodeUri: lockdown/
       Handler: app.lambda_handler
       Runtime: python3.7
       Events:
-        UploadCkl:
+        LockDown:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /uploadckl
+            Path: /lockdown
             Method: ANY
       Policies:
         - DynamoDBCrudPolicy:
@@ -71,12 +71,12 @@ Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  UploadCklApi:
-    Description: "API Gateway endpoint URL for Prod stage for UploadCkl function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/uploadckl/"
-  UploadCklFunction:
-    Description: "UploadCkl Lambda Function ARN"
-    Value: !GetAtt UploadCklFunction.Arn
-  UploadCklFunctionIamRole:
-    Description: "Implicit IAM Role created for UploadCkl function"
-    Value: !GetAtt UploadCklFunctionRole.Arn
+  LockDownApi:
+    Description: "API Gateway endpoint URL for Prod stage for LockDown function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/lockdown/"
+  LockDownFunction:
+    Description: "LockDown Lambda Function ARN"
+    Value: !GetAtt LockDownFunction.Arn
+  LockDownFunctionIamRole:
+    Description: "Implicit IAM Role created for LockDown function"
+    Value: !GetAtt LockDownFunctionRole.Arn
