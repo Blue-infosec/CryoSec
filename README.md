@@ -98,7 +98,7 @@ let generateProject = project => {
 -->
 
 ```bash
-cd microservices/vulndb
+cd microservices/aws/vulndb
 
 # Create AWS Cloudformation CryoSec stack
 ./stack create
@@ -131,7 +131,7 @@ cd microservices/vulndb
 
 ```shell
 $ aws configure
-$ cd CryoSec/microservices/vulndb
+$ cd CryoSec/microservices/aws/vulndb
 # Modify your app name and AWS deployment region (app name vulndb is already taken)
 $ vim stack.config
 
@@ -140,7 +140,7 @@ $ ./stack create
 $ ./stack test
 
 # Generate a checklist via web request
-$ cd CryoSec/microservices/genckl
+$ cd CryoSec/microservices/aws/genckl
 $ ./stack create
 $ ./stack test
 ```
