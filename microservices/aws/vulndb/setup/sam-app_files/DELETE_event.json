@@ -1,0 +1,10 @@
+{
+       "TableName": "checklist_redhat",
+       "Key": {
+           "stig_id": {
+               "S": "RHEL-07-010090"
+           }
+       },
+       "ConditionExpression": "attribute_not_exists(Replies)",
+       "ReturnValues": "ALL_OLD"
+ }

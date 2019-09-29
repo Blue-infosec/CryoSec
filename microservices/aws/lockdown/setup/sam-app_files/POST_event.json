@@ -1,0 +1,7 @@
+{
+  "TableName": "lockdown",
+    "Item": {
+       "p_id": {"S":"6"},
+       "p_status": {"S":"Initiated"}
+      }
+}

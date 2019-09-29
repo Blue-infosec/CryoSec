@@ -1,0 +1,10 @@
+{
+  "TableName": "lockdown",
+  "Key": {
+    "p_id": {"S": "2"}
+  },
+  "AttributeUpdates": {
+    "p_status": {"Value": {"S": "Done"},"Action": "PUT"}
+  },
+  "ReturnValues": "ALL_NEW"
+}

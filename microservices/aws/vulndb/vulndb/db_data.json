@@ -1,0 +1,28 @@
+{
+    "checklist_redhat": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "stig_id": {
+                        "S": "RHEL-07-010010"
+                    },
+                    "stig_status": {
+                        "S": "Test_Value"
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "stig_id": {
+                        "S": "RHEL-07-010020"
+                    },
+                    "stig_status": {
+                        "S": "Not_A_Finding"
+                    }
+                }
+            }
+        }
+    ]
+}

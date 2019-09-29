@@ -1,0 +1,10 @@
+{
+  "TableName": "checklist_redhat",
+  "Key": {
+    "stig_id": {"S": "RHEL-07-010010"}
+  },
+  "AttributeUpdates": {
+    "stig_status": {"Value": {"S": "Test_Value2"},"Action": "PUT"}
+  },
+  "ReturnValues": "ALL_NEW"
+}

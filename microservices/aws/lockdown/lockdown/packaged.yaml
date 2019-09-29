@@ -1,0 +1,82 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'lockdown app
+
+  Modify vulnerability status via API
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Outputs:
+  LockDownApi:
+    Description: API Gateway endpoint URL for Prod stage for LockDown function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/lockdown/
+  LockDownFunction:
+    Description: LockDown Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - LockDownFunction
+      - Arn
+  LockDownFunctionIamRole:
+    Description: Implicit IAM Role created for LockDown function
+    Value:
+      Fn::GetAtt:
+      - LockDownFunctionRole
+      - Arn
+Resources:
+  LockDownFunction:
+    Properties:
+      CodeUri: s3://lockdown7vjuthhndnvi5/908d0a9085349bc81d85b2908a577581
+      Events:
+        LockDown:
+          Properties:
+            Method: ANY
+            Path: /lockdown
+          Type: Api
+      Handler: app.lambda_handler
+      Policies:
+      - DynamoDBCrudPolicy:
+          AccountId: ${AWS::AccountId}
+          Partition: AWS
+          Region: ${AWS::Region}
+          TableName: lockdown
+      - DynamoDBReadPolicy:
+          AccountId: ${AWS::AccountId}
+          Partition: AWS
+          Region: ${AWS::Region}
+          TableName: lockdown
+      - SQSPollerPolicy:
+          QueueName: lockdown_q.fifo
+      - SQSSendMessagePolicy:
+          QueueName: lockdown_q.fifo
+      Runtime: python3.7
+    Type: AWS::Serverless::Function
+  myDynamoDBTable:
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: p_id
+        AttributeType: S
+      - AttributeName: p_status
+        AttributeType: S
+      GlobalSecondaryIndexes:
+      - IndexName: myGSI
+        KeySchema:
+        - AttributeName: p_status
+          KeyType: HASH
+        Projection:
+          NonKeyAttributes:
+          - p_id
+          ProjectionType: INCLUDE
+        ProvisionedThroughput:
+          ReadCapacityUnits: '5'
+          WriteCapacityUnits: '5'
+      KeySchema:
+      - AttributeName: p_id
+        KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: '5'
+        WriteCapacityUnits: '5'
+      TableName: lockdown
+    Type: AWS::DynamoDB::Table
+Transform: AWS::Serverless-2016-10-31

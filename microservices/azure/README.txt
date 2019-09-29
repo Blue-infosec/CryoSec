@@ -1,0 +1,1 @@
+Azure version of app
