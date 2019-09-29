@@ -27,7 +27,7 @@ Outputs:
 Resources:
   LockDownFunction:
     Properties:
-      CodeUri: s3://lockdown7vjuthhndnvi5/662d1f79bb2255f63330751c1bd8bf2d
+      CodeUri: s3://lockdown7vjuthhndnvi5/908d0a9085349bc81d85b2908a577581
       Events:
         LockDown:
           Properties:
@@ -46,6 +46,10 @@ Resources:
           Partition: AWS
           Region: ${AWS::Region}
           TableName: lockdown
+      - SQSPollerPolicy:
+          QueueName: lockdown_q.fifo
+      - SQSSendMessagePolicy:
+          QueueName: lockdown_q.fifo
       Runtime: python3.7
     Type: AWS::Serverless::Function
   myDynamoDBTable:

@@ -34,6 +34,10 @@ Resources:
             Region: ${AWS::Region}
             AccountId: ${AWS::AccountId}
             TableName: lockdown
+        - SQSPollerPolicy:
+            QueueName: lockdown_q.fifo
+        - SQSSendMessagePolicy:
+            QueueName: lockdown_q.fifo
   myDynamoDBTable:
     Type: AWS::DynamoDB::Table
     Properties:
