@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'vulndb app
+Description: 'lockdown app
 
   Modify vulnerability status via API
 
@@ -8,31 +8,31 @@ Globals:
   Function:
     Timeout: 3
 Outputs:
-  VulnDBApi:
-    Description: API Gateway endpoint URL for Prod stage for VulnDB function
+  LockDownApi:
+    Description: API Gateway endpoint URL for Prod stage for LockDown function
     Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/vulndb/
-  VulnDBFunction:
-    Description: VulnDB Lambda Function ARN
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/lockdown/
+  LockDownFunction:
+    Description: LockDown Lambda Function ARN
     Value:
       Fn::GetAtt:
-      - VulnDBFunction
+      - LockDownFunction
       - Arn
-  VulnDBFunctionIamRole:
-    Description: Implicit IAM Role created for VulnDB function
+  LockDownFunctionIamRole:
+    Description: Implicit IAM Role created for LockDown function
     Value:
       Fn::GetAtt:
-      - VulnDBFunctionRole
+      - LockDownFunctionRole
       - Arn
 Resources:
-  VulnDBFunction:
+  LockDownFunction:
     Properties:
-      CodeUri: s3://vulndb7vjuthhndnvi5/958246ca07ac756053f03800b10d3fac
+      CodeUri: s3://lockdown7vjuthhndnvi5/f3418ec961a35ea413ac31245ef2392d
       Events:
-        VulnDB:
+        LockDown:
           Properties:
             Method: ANY
-            Path: /vulndb
+            Path: /lockdown
           Type: Api
       Handler: app.lambda_handler
       Policies:
@@ -40,39 +40,39 @@ Resources:
           AccountId: ${AWS::AccountId}
           Partition: AWS
           Region: ${AWS::Region}
-          TableName: checklist_redhat
+          TableName: lockdown
       - DynamoDBReadPolicy:
           AccountId: ${AWS::AccountId}
           Partition: AWS
           Region: ${AWS::Region}
-          TableName: checklist_redhat
+          TableName: lockdown
       Runtime: python3.7
     Type: AWS::Serverless::Function
   myDynamoDBTable:
     Properties:
       AttributeDefinitions:
-      - AttributeName: stig_id
+      - AttributeName: p_id
         AttributeType: S
-      - AttributeName: stig_status
+      - AttributeName: p_status
         AttributeType: S
       GlobalSecondaryIndexes:
       - IndexName: myGSI
         KeySchema:
-        - AttributeName: stig_status
+        - AttributeName: p_status
           KeyType: HASH
         Projection:
           NonKeyAttributes:
-          - stig_id
+          - p_id
           ProjectionType: INCLUDE
         ProvisionedThroughput:
           ReadCapacityUnits: '5'
           WriteCapacityUnits: '5'
       KeySchema:
-      - AttributeName: stig_id
+      - AttributeName: p_id
         KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: '5'
         WriteCapacityUnits: '5'
-      TableName: checklist_redhat
+      TableName: lockdown
     Type: AWS::DynamoDB::Table
 Transform: AWS::Serverless-2016-10-31

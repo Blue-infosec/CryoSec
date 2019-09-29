@@ -9,7 +9,7 @@ function test_stack {
     echo "GET Test"
     curl -i -X GET \
       -H "Content-Type: application/json" \
-      "${url}?TableName=checklist_redhat"
+      "${url}?TableName=lockdown"
     echo ""
     echo ""
     echo "POST Test"

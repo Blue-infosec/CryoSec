@@ -1,12 +1,12 @@
 {
-    "checklist_redhat": [
+    "lockdown": [
         {
             "PutRequest": {
                 "Item": {
-                    "stig_id": {
-                        "S": "RHEL-07-010010"
+                    "p_id": {
+                        "S": "1"
                     },
-                    "stig_status": {
+                    "p_status": {
                         "S": "Test_Value"
                     }
                 }
@@ -15,11 +15,11 @@
         {
             "PutRequest": {
                 "Item": {
-                    "stig_id": {
-                        "S": "RHEL-07-010020"
+                    "p_id": {
+                        "S": "2"
                     },
-                    "stig_status": {
-                        "S": "Not_A_Finding"
+                    "p_status": {
+                        "S": "Initiated"
                     }
                 }
             }

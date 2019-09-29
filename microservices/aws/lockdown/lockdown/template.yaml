@@ -28,26 +28,26 @@ Resources:
             Partition: AWS
             Region: ${AWS::Region}
             AccountId: ${AWS::AccountId}
-            TableName: checklist_redhat
+            TableName: lockdown
         - DynamoDBReadPolicy:
             Partition: AWS
             Region: ${AWS::Region}
             AccountId: ${AWS::AccountId}
-            TableName: checklist_redhat
+            TableName: lockdown
   myDynamoDBTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: "checklist_redhat"
+      TableName: "lockdown"
       AttributeDefinitions:
         -
-          AttributeName: "stig_id"
+          AttributeName: "p_id"
           AttributeType: "S"
         -
-          AttributeName: "stig_status"
+          AttributeName: "p_status"
           AttributeType: "S"
       KeySchema:
         -
-          AttributeName: "stig_id"
+          AttributeName: "p_id"
           KeyType: "HASH"
       ProvisionedThroughput:
         ReadCapacityUnits: "5"
@@ -57,11 +57,11 @@ Resources:
           IndexName: "myGSI"
           KeySchema:
             -
-              AttributeName: "stig_status"
+              AttributeName: "p_status"
               KeyType: "HASH"
           Projection:
             NonKeyAttributes:
-              - "stig_id"
+              - "p_id"
             ProjectionType: "INCLUDE"
           ProvisionedThroughput:
             ReadCapacityUnits: "5"
