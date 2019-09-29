@@ -1,5 +1,5 @@
 {
   "queryStringParameters": {
-  "TableName": "checklist_redhat"
+  "TableName": "lockdown"
   }
 }

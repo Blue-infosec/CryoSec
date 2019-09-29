@@ -1,8 +1,8 @@
 {
-       "TableName": "checklist_redhat",
+       "TableName": "lockdown",
        "Key": {
-           "stig_id": {
-               "S": "RHEL-07-010090"
+           "p_id": {
+               "S": "5"
            }
        },
        "ConditionExpression": "attribute_not_exists(Replies)",

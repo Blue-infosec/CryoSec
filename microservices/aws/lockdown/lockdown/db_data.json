@@ -7,7 +7,7 @@
                         "S": "1"
                     },
                     "p_status": {
-                        "S": "Test_Value"
+                        "S": "Initiated"
                     }
                 }
             }
@@ -19,7 +19,43 @@
                         "S": "2"
                     },
                     "p_status": {
-                        "S": "Initiated"
+                        "S": "Processing"
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "p_id": {
+                        "S": "3"
+                    },
+                    "p_status": {
+                        "S": "Done"
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "p_id": {
+                        "S": "4"
+                    },
+                    "p_status": {
+                        "S": "Failure"
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "p_id": {
+                        "S": "5"
+                    },
+                    "p_status": {
+                        "S": "Error"
                     }
                 }
             }

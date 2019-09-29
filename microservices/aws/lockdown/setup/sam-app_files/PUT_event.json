@@ -1,10 +1,10 @@
 {
-  "TableName": "checklist_redhat",
+  "TableName": "lockdown",
   "Key": {
-    "stig_id": {"S": "RHEL-07-010010"}
+    "p_id": {"S": "2"}
   },
   "AttributeUpdates": {
-    "stig_status": {"Value": {"S": "Test_Value2"},"Action": "PUT"}
+    "p_status": {"Value": {"S": "Done"},"Action": "PUT"}
   },
   "ReturnValues": "ALL_NEW"
 }

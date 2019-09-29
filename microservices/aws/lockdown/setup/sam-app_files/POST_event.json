@@ -1,7 +1,7 @@
 {
-  "TableName": "checklist_redhat",
+  "TableName": "lockdown",
     "Item": {
-       "stig_id": {"S":"RHEL-07-010090"},
-       "stig_status": {"S":"tester"}
+       "p_id": {"S":"6"},
+       "p_status": {"S":"Initiated"}
       }
 }
