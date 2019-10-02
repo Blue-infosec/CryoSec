@@ -47,7 +47,7 @@ Resources:
           AttributeName: "p_id"
           AttributeType: "S"
         -
-          AttributeName: "p_status"
+          AttributeName: "hostname"
           AttributeType: "S"
       KeySchema:
         -
@@ -61,7 +61,7 @@ Resources:
           IndexName: "myGSI"
           KeySchema:
             -
-              AttributeName: "p_status"
+              AttributeName: "hostname"
               KeyType: "HASH"
           Projection:
             NonKeyAttributes:

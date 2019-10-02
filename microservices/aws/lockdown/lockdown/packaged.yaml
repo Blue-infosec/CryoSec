@@ -27,7 +27,7 @@ Outputs:
 Resources:
   LockDownFunction:
     Properties:
-      CodeUri: s3://lockdown7vjuthhndnvi5/258432db983cfcd8e38fc69ef4f76d9f
+      CodeUri: s3://lockdown7vjuthhndnvi5/0435ceff53d0a22e80221e8118d5aae9
       Events:
         LockDown:
           Properties:
@@ -57,12 +57,12 @@ Resources:
       AttributeDefinitions:
       - AttributeName: p_id
         AttributeType: S
-      - AttributeName: p_status
+      - AttributeName: hostname
         AttributeType: S
       GlobalSecondaryIndexes:
       - IndexName: myGSI
         KeySchema:
-        - AttributeName: p_status
+        - AttributeName: hostname
           KeyType: HASH
         Projection:
           NonKeyAttributes:
