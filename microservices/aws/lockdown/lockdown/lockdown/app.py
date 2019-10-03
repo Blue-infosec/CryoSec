@@ -39,6 +39,10 @@ def lambda_handler(event, context):
     operation = event['httpMethod']
     if operation in operations:
         payload = event['queryStringParameters'] if operation == 'GET' else json.loads(event['body'])
+        if operation == 'GET' and payload['ExpressionAttributeValues'] is not None:
+            payload['ExpressionAttributeValues'] = json.loads(payload['ExpressionAttributeValues'])
+
+
         sqs_queue_url="https://sqs.us-west-2.amazonaws.com/096412041307/lockdown_q.fifo"
         msg_body='SQS message'
         group_id="lambda_lockdown_req"
@@ -48,11 +52,14 @@ def lambda_handler(event, context):
         send_sqs_message(sqs_queue_url, msg_body, group_id, dedup_id)
 
         #Retrieve SQS Message
-        msg=retrieve_sqs_messages(sqs_queue_url, num_msgs=1, wait_time=2, visibility_time=5)
-        msg_receipt_handle=msg[0]['ReceiptHandle']
-        delete_sqs_message(sqs_queue_url, msg_receipt_handle)
+        #msg=retrieve_sqs_messages(sqs_queue_url, num_msgs=1, wait_time=2, visibility_time=5)
+        #msg_receipt_handle=msg[0]['ReceiptHandle']
+        #delete_sqs_message(sqs_queue_url, msg_receipt_handle)
 
-        return respond(None, msg)
-        #return respond(None, operations[operation](dynamo, payload))
+        #Return SQS Message
+        #return respond(None, msg)
+
+        return respond(None, operations[operation](dynamo, payload))
     else:
         return respond(ValueError('Unsupported method "{}"'.format(operation)))
+

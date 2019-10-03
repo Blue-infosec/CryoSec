@@ -27,7 +27,7 @@ Outputs:
 Resources:
   LockDownFunction:
     Properties:
-      CodeUri: s3://lockdown7vjuthhndnvi5/0435ceff53d0a22e80221e8118d5aae9
+      CodeUri: s3://lockdown7vjuthhndnvi5/e95fb6773467033f13d4a2928d07a2d1
       Events:
         LockDown:
           Properties:
