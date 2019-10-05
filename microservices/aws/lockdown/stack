@@ -9,25 +9,18 @@ function test_stack {
     echo "GET Test"
     curl -i -X GET \
       -H "Content-Type: application/json" \
-      "${url}?TableName=lockdown"
+      -G \
+      $url \
+      --data-urlencode \
+      "TableName=lockdown" \
+      --data-urlencode \
+      "FilterExpression=hostname=:value1 AND stig_id=:value2" \
+      --data-urlencode \
+      'ExpressionAttributeValues={":value1":{"S":"bingo"}},{":value2":{"S":"idk"}}'
     echo ""
     echo ""
     echo "POST Test"
     curl -i -X POST -d @setup/sam-app_files/POST_event.json \
-      -H "Accept: application/json" \
-      -H "Content-Type: application/json" \
-      $url
-    echo ""
-    echo ""
-    echo "PUT Test"
-    curl -i -X PUT -d @setup/sam-app_files/PUT_event.json \
-      -H "Accept: application/json" \
-      -H "Content-Type: application/json" \
-      $url
-    echo ""
-    echo ""
-    echo "DELETE Test"
-    curl -i -X DELETE -d @setup/sam-app_files/DELETE_event.json \
       -H "Accept: application/json" \
       -H "Content-Type: application/json" \
       $url

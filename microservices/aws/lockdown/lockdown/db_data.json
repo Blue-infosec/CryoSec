@@ -6,8 +6,26 @@
                     "p_id": {
                         "S": "1"
                     },
-                    "p_status": {
+                    "hostname": {
+                        "S": "idk"
+                    },
+                    "stig_id": {
+                        "S": "idk"
+                    },
+                    "action": {
+                        "S": "check"
+                    },
+                    "action_status": {
                         "S": "Initiated"
+                    },
+                    "admin": {
+                        "S": "idk"
+                    },
+                    "start_time": {
+                        "S": "idk"
+                    },
+                    "end_time": {
+                        "S": "idk"
                     }
                 }
             }
@@ -18,8 +36,26 @@
                     "p_id": {
                         "S": "2"
                     },
-                    "p_status": {
+                    "hostname": {
+                        "S": "idk"
+                    },
+                    "stig_id": {
+                        "S": "idk"
+                    },
+                    "action": {
+                        "S": "check"
+                    },
+                    "action_status": {
                         "S": "Processing"
+                    },
+                    "admin": {
+                        "S": "idk"
+                    },
+                    "start_time": {
+                        "S": "idk"
+                    },
+                    "end_time": {
+                        "S": "idk"
                     }
                 }
             }
@@ -30,8 +66,26 @@
                     "p_id": {
                         "S": "3"
                     },
-                    "p_status": {
+                    "hostname": {
+                        "S": "idk"
+                    },
+                    "stig_id": {
+                        "S": "idk"
+                    },
+                    "action": {
+                        "S": "check"
+                    },
+                    "action_status": {
                         "S": "Done"
+                    },
+                    "admin": {
+                        "S": "idk"
+                    },
+                    "start_time": {
+                        "S": "idk"
+                    },
+                    "end_time": {
+                        "S": "idk"
                     }
                 }
             }
@@ -42,8 +96,26 @@
                     "p_id": {
                         "S": "4"
                     },
-                    "p_status": {
+                    "hostname": {
+                        "S": "idk"
+                    },
+                    "stig_id": {
+                        "S": "idk"
+                    },
+                    "action": {
+                        "S": "check"
+                    },
+                    "action_status": {
                         "S": "Failure"
+                    },
+                    "admin": {
+                        "S": "idk"
+                    },
+                    "start_time": {
+                        "S": "idk"
+                    },
+                    "end_time": {
+                        "S": "idk"
                     }
                 }
             }
@@ -54,8 +126,26 @@
                     "p_id": {
                         "S": "5"
                     },
-                    "p_status": {
+                    "hostname": {
+                        "S": "idk"
+                    },
+                    "stig_id": {
+                        "S": "idk"
+                    },
+                    "action": {
+                        "S": "check"
+                    },
+                    "action_status": {
                         "S": "Error"
+                    },
+                    "admin": {
+                        "S": "idk"
+                    },
+                    "start_time": {
+                        "S": "idk"
+                    },
+                    "end_time": {
+                        "S": "idk"
                     }
                 }
             }
