@@ -14,9 +14,12 @@ function test_stack {
       --data-urlencode \
       "TableName=lockdown" \
       --data-urlencode \
-      "FilterExpression=hostname=:value1 AND stig_id=:value2" \
+      "FilterExpression=hostname=:value1" \
       --data-urlencode \
-      'ExpressionAttributeValues={":value1":{"S":"bingo"}},{":value2":{"S":"idk"}}'
+      'ExpressionAttributeValues={":value1":{"S":"hostname1"}}'
+      #"FilterExpression=hostname=:value1 AND stig_id=:value2" \
+      #--data-urlencode \
+      #'ExpressionAttributeValues={":value1":{"S":"bingo"}},{":value2":{"S":"idk"}}'
     echo ""
     echo ""
     echo "POST Test"

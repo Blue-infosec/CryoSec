@@ -2,6 +2,8 @@
   "TableName": "lockdown",
     "Item": {
        "p_id": {"S":"6"},
-       "p_status": {"S":"Initiated"}
+       "stig_id": {"S":"RHEL-07-020110"},
+       "action": {"S":"check"},
+       "action_status": {"S":"Processing"}
       }
 }
