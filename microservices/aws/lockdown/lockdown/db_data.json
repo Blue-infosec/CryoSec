@@ -97,7 +97,7 @@
                         "S": "4"
                     },
                     "hostname": {
-                        "S": "idk"
+                        "S": "hostname1"
                     },
                     "stig_id": {
                         "S": "idk"
