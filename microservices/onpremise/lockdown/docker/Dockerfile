@@ -26,6 +26,4 @@ RUN chmod -R 400 /root/.ssh/
 RUN echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
 RUN git clone git@github.com:DevManTillis/CryoSec.git
 WORKDIR /lockdown/CryoSec/microservices/aws/lockdown/ansible/
-ENV PATH="/usr/local/bin/ansible:${PATH}"
-#CMD /bin/bash -c "ansible --version"
 CMD /bin/bash -c "while true; do sleep 1000; done"

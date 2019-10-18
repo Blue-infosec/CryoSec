@@ -1,7 +1,5 @@
 import boto3
 import json
-from receive_message import retrieve_sqs_messages,delete_sqs_message
-from send_message import send_sqs_message
 
 print('Loading function')
 dynamo = boto3.client('dynamodb')
@@ -38,28 +36,10 @@ def lambda_handler(event, context):
 
     operation = event['httpMethod']
     if operation in operations:
-        payload = event['queryStringParameters'] if operation == 'GET' else json.loads(event['body'])
-        if operation == 'GET' and payload['ExpressionAttributeValues'] is not None:
-            payload['ExpressionAttributeValues'] = json.loads(payload['ExpressionAttributeValues'])
-
-
-        if operation == 'POST':
-            sqs_queue_url="https://sqs.us-west-2.amazonaws.com/096412041307/lockdown_q.fifo"
-            group_id="lambda_lockdown_req"
-            dedup_id="lambda_lockdown_req"
-            msg_body = json.dumps(payload)
-            #Send SQS Message
-            send_sqs_message(sqs_queue_url, msg_body, group_id, dedup_id)
-
-        #Retrieve SQS Message
-        #msg=retrieve_sqs_messages(sqs_queue_url, num_msgs=1, wait_time=2, visibility_time=5)
-        #msg_receipt_handle=msg[0]['ReceiptHandle']
-        #delete_sqs_message(sqs_queue_url, msg_receipt_handle)
-
-        #Return SQS Message
-        #return respond(None, msg)
-
+        payload = event['queryStringParameters'] if operation == 'GET' else json.loads(event['body'])#json.dumps(event['body'])# json.loads(event['body'])
+        #payload = json.loads(event['body'])#json.dumps(event['body'])# json.loads(event['body'])
         return respond(None, operations[operation](dynamo, payload))
     else:
         return respond(ValueError('Unsupported method "{}"'.format(operation)))
+
 

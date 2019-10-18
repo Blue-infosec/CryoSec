@@ -1,0 +1,14 @@
+{
+  "httpMethod":"GET",
+  "queryStringParameters": {
+    "KeyConditionExpression": "stig_id = :item1",
+    "ExpressionAttributeValues": {
+      ":item1": {
+        "S": "RHEL-07-010020"
+      }
+    },
+    "ConsistentRead": true,
+    "ReturnConsumedCapacity": "TOTAL",
+    "TableName": "checklist_redhat"
+  }
+}

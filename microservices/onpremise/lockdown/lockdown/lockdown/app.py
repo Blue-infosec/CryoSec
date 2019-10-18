@@ -43,13 +43,13 @@ def lambda_handler(event, context):
             payload['ExpressionAttributeValues'] = json.loads(payload['ExpressionAttributeValues'])
 
 
-        if operation == 'POST':
-            sqs_queue_url="https://sqs.us-west-2.amazonaws.com/096412041307/lockdown_q.fifo"
-            group_id="lambda_lockdown_req"
-            dedup_id="lambda_lockdown_req"
-            msg_body = json.dumps(payload)
-            #Send SQS Message
-            send_sqs_message(sqs_queue_url, msg_body, group_id, dedup_id)
+        sqs_queue_url="https://sqs.us-west-2.amazonaws.com/096412041307/lockdown_q.fifo"
+        msg_body='SQS message'
+        group_id="lambda_lockdown_req"
+        dedup_id="lambda_lockdown_req"
+
+        #Send SQS Message
+        send_sqs_message(sqs_queue_url, msg_body, group_id, dedup_id)
 
         #Retrieve SQS Message
         #msg=retrieve_sqs_messages(sqs_queue_url, num_msgs=1, wait_time=2, visibility_time=5)
