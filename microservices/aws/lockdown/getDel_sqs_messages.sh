@@ -18,7 +18,8 @@
 #        }
 #    ]
 #}""" | awk /"ReceiptHandle"/ | tr -d " \t\n\r" | sed 's/,//g' | sed 's/ReceiptHandle://g'
-response=$(aws sqs receive-message --queue-url https://sqs.us-west-2.amazonaws.com/096412041307/lockdown_q.fifo --attribute-names All --message-attribute-names All --max-number-of-messages 1)
+#response=$(aws sqs receive-message --queue-url https://sqs.us-west-2.amazonaws.com/096412041307/lockdown_q.fifo --attribute-names All --message-attribute-names All --max-number-of-messages 1 | awk /"Body"/ | tr -d " \t\n\r" | sed 's/,//g' | sed 's/\"Body\"://g')
+response=$(aws sqs receive-message --queue-url https://sqs.us-west-2.amazonaws.com/096412041307/lockdown_deadq.fifo --attribute-names All --message-attribute-names All --max-number-of-messages 1 | awk /"Body"/ | tr -d " \t\n\r" | sed 's/,//g' | sed 's/\"Body\":\"//g' | sed 's/""MD5OfBody".*//' | sed 's/\\//g')
 echo "$response"
 #message=$(echo $response | awk /"Body"/ | tr -d " \t\n\r" | sed 's/,//g' | sed 's/Body://g')
 #message=$(echo "$response" )
