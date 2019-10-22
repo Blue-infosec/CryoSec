@@ -1,0 +1,12 @@
+---
+# tasks file for save_vuln
+- name: Write Check
+  record_check_result:
+    name: Test Var to pass to custom module
+    check_fact: "{{ 'Not_A_Finding' if ( check_fact == 'stopped' or check_fact == 'None' ) else 'Open' }}"
+    stig_id: "{{ stig_id }}"
+    checklist_name: "{{ checklist_name }}"
+    write_result: "{{ write_result }}"
+    output_path: "{{ role_path | dirname}}/files/output_checklists"
+    input_path: "{{ role_path | dirname}}/files/input_checklists"
+  delegate_to: localhost

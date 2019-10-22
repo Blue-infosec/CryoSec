@@ -1,0 +1,10 @@
+{
+       "TableName": "lockdown",
+       "Key": {
+           "p_id": {
+               "S": "5"
+           }
+       },
+       "ConditionExpression": "attribute_not_exists(Replies)",
+       "ReturnValues": "ALL_OLD"
+ }

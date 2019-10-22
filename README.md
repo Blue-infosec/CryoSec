@@ -1,14 +1,12 @@
 <!--<a href="http://fvcproductions.com"><img src="https://avatars1.githubusercontent.com/u/4284691?v=3&s=200" title="FVCproductions" alt="FVCproductions"></a>-->
 
-My first commit, Sam :) 
-
-[![CryoSec](https://raw.githubusercontent.com/DevManTillis/CryoSec/dev/files/cryosec_logo1.png)](http://tillisautomation.com)
+<!--[![CryoSec](https://raw.githubusercontent.com/DevManTillis/CryoSec/dev/files/cryosec_logo1.png)](http://tillisautomation.com)-->
 
 <!--***CryoSec - System & Application Hardening Automation***-->
 
 # CryoSec
 
-> AWS cloud based system & application hardening automation simplified.
+> Automated cloud vendor agnostic server, container, and application hardening suite
 
 <!-- > ideally one sentence -->
 
@@ -38,7 +36,7 @@ My first commit, Sam :)
 
 <!-- ***Iteration One Planning*** -->
 
-[![INSERT YOUR GRAPHIC HERE](https://raw.githubusercontent.com/DevManTillis/CryoSec/dev/files/Planning_Iteration_1.png)]()
+<!--[![INSERT YOUR GRAPHIC HERE](https://raw.githubusercontent.com/DevManTillis/CryoSec/dev/files/Planning_Iteration_1.png)]()-->
 
 <!--[![INSERT YOUR GRAPHIC HERE](http://i.imgur.com/dt8AUb6.png)]()-->
 <!--

@@ -1,0 +1,6 @@
+[slave]
+10.0.1.1
+
+[slave:vars]
+ansible_user=sysadmin
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
