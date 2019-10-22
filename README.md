@@ -36,7 +36,7 @@
 
 <!-- ***Iteration One Planning*** -->
 
-[![INSERT YOUR GRAPHIC HERE](https://raw.githubusercontent.com/DevManTillis/CryoSec/dev/files/Planning_Iteration_1.png)]()
+<!--[![INSERT YOUR GRAPHIC HERE](https://raw.githubusercontent.com/DevManTillis/CryoSec/dev/files/Planning_Iteration_1.png)]()-->
 
 <!--[![INSERT YOUR GRAPHIC HERE](http://i.imgur.com/dt8AUb6.png)]()-->
 <!--
