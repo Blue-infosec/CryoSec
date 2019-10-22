@@ -1,6 +1,6 @@
 <!--<a href="http://fvcproductions.com"><img src="https://avatars1.githubusercontent.com/u/4284691?v=3&s=200" title="FVCproductions" alt="FVCproductions"></a>-->
 
-[![CryoSec](https://raw.githubusercontent.com/DevManTillis/CryoSec/dev/files/cryosec_logo1.png | width=150)](http://tillisautomation.com)
+<!--[![CryoSec](https://raw.githubusercontent.com/DevManTillis/CryoSec/dev/files/cryosec_logo1.png)](http://tillisautomation.com)-->
 
 <!--***CryoSec - System & Application Hardening Automation***-->
 
