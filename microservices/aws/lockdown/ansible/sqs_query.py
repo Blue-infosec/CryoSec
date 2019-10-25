@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.6
+#!/usr/bin/env python3.7
 import json
 import boto3
 from receive_message import retrieve_sqs_messages,delete_sqs_message
@@ -18,5 +18,6 @@ msg_receipt_handle=msg[0]['ReceiptHandle']
 
 print(msg)
 print(msg_receipt_handle)
+
 # Delete SQS message
 #delete_sqs_message(sqs_queue_url, msg_receipt_handle)
