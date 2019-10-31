@@ -14,7 +14,7 @@ Resources:
     Properties:
       CodeUri: s3://vulndb7vjuthhndnvi5/29ef9d5b18d30f3f39b9423a61192f80
       Handler: app.lambda_handler
-      Runtime: python3.7
+      Runtime: python3.6
       Events:
         VulnDB:
           Type: Api
