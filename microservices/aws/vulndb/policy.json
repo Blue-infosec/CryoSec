@@ -1,0 +1,43 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateServiceLinkedRole",
+                "iam:DeleteServiceLinkedRole",
+                "iam:DetachRolePolicy",
+                "iam:ListRoles",
+                "iam:CreateRole",
+                "iam:DeleteRole",
+                "iam:DeleteRolePolicy",
+                "iam:PutRolePolicy",
+                "iam:AttachRolePolicy",
+                "iam:GetRole",
+                "iam:PassRole",
+                "organizations:DescribeOrganization",
+                "account:ListRegions",
+                "dynamodb:*",
+                "s3:*",
+                "sqs:*",
+                "cloudformation:*",
+                "lambda:*",
+                "execute-api:*"
+            ],
+            "Resource": [
+                "arn:aws:iam::096412041307:role/*",
+                "arn:aws:dynamodb:us-west-2:096412041307:*",
+                "arn:aws:s3:::*",
+                "arn:aws:sqs:us-west-2:096412041307:*",
+                "arn:aws:cloudformation:us-west-2:096412041307:stack/*/*",
+                "arn:aws:cloudformation:us-west-2:aws:transform/*",
+                "arn:aws:lambda:us-west-2:096412041307:*",
+                "arn:aws:lambda:us-west-2:096412041307:function:*",
+                "arn:aws:lambda:us-west-2:096412041307:layer:*",
+                "arn:aws:lambda:us-west-2:096412041307:layer:*:*",
+                "arn:aws:lambda:us-west-2:096412041307:event-source-mapping:*",
+                "arn:aws:execute-api:us-west-2:096412041307:*"
+            ]
+        }
+    ]
+}

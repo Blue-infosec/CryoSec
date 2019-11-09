@@ -1,5 +1,4 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
 Description: 'vulndb app
 
   Modify vulnerability status via API
@@ -8,57 +7,6 @@ Description: 'vulndb app
 Globals:
   Function:
     Timeout: 3
-Resources:
-  VulnDBFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: s3://vulndb7vjuthhndnvi5/29ef9d5b18d30f3f39b9423a61192f80
-      Handler: app.lambda_handler
-      Runtime: python3.6
-      Events:
-        VulnDB:
-          Type: Api
-          Properties:
-            Path: /vulndb
-            Method: ANY
-      Policies:
-      - DynamoDBCrudPolicy:
-          Partition: AWS
-          Region: ${AWS::Region}
-          AccountId: ${AWS::AccountId}
-          TableName: checklist_redhat
-      - DynamoDBReadPolicy:
-          Partition: AWS
-          Region: ${AWS::Region}
-          AccountId: ${AWS::AccountId}
-          TableName: checklist_redhat
-  myDynamoDBTable:
-    Type: AWS::DynamoDB::Table
-    Properties:
-      TableName: checklist_redhat
-      AttributeDefinitions:
-      - AttributeName: stig_id
-        AttributeType: S
-      - AttributeName: stig_status
-        AttributeType: S
-      KeySchema:
-      - AttributeName: stig_id
-        KeyType: HASH
-      ProvisionedThroughput:
-        ReadCapacityUnits: '5'
-        WriteCapacityUnits: '5'
-      GlobalSecondaryIndexes:
-      - IndexName: myGSI
-        KeySchema:
-        - AttributeName: stig_status
-          KeyType: HASH
-        Projection:
-          NonKeyAttributes:
-          - stig_id
-          ProjectionType: INCLUDE
-        ProvisionedThroughput:
-          ReadCapacityUnits: '5'
-          WriteCapacityUnits: '5'
 Outputs:
   VulnDBApi:
     Description: API Gateway endpoint URL for Prod stage for VulnDB function
@@ -76,3 +24,55 @@ Outputs:
       Fn::GetAtt:
       - VulnDBFunctionRole
       - Arn
+Resources:
+  VulnDBFunction:
+    Properties:
+      CodeUri: s3://vulndb7vjuthhndnvi5/c13bedba3125233e8dce19ec99bd6da9
+      Events:
+        VulnDB:
+          Properties:
+            Method: ANY
+            Path: /vulndb
+          Type: Api
+      Handler: app.lambda_handler
+      Policies:
+      - DynamoDBCrudPolicy:
+          AccountId: ${AWS::AccountId}
+          Partition: AWS
+          Region: ${AWS::Region}
+          TableName: checklist_redhat
+      - DynamoDBReadPolicy:
+          AccountId: ${AWS::AccountId}
+          Partition: AWS
+          Region: ${AWS::Region}
+          TableName: checklist_redhat
+      Runtime: python3.7
+    Type: AWS::Serverless::Function
+  myDynamoDBTable:
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: stig_id
+        AttributeType: S
+      - AttributeName: stig_status
+        AttributeType: S
+      GlobalSecondaryIndexes:
+      - IndexName: myGSI
+        KeySchema:
+        - AttributeName: stig_status
+          KeyType: HASH
+        Projection:
+          NonKeyAttributes:
+          - stig_id
+          ProjectionType: INCLUDE
+        ProvisionedThroughput:
+          ReadCapacityUnits: '5'
+          WriteCapacityUnits: '5'
+      KeySchema:
+      - AttributeName: stig_id
+        KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: '5'
+        WriteCapacityUnits: '5'
+      TableName: checklist_redhat
+    Type: AWS::DynamoDB::Table
+Transform: AWS::Serverless-2016-10-31
