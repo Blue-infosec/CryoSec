@@ -15,6 +15,7 @@
                 "iam:AttachRolePolicy",
                 "iam:GetRole",
                 "iam:PassRole",
+                "iam:getRolePolicy",
                 "organizations:DescribeOrganization",
                 "account:ListRegions",
                 "dynamodb:*",
@@ -22,7 +23,8 @@
                 "sqs:*",
                 "cloudformation:*",
                 "lambda:*",
-                "execute-api:*"
+                "execute-api:*",
+                "apigateway:*"
             ],
             "Resource": [
                 "arn:aws:iam::096412041307:role/*",
@@ -36,7 +38,11 @@
                 "arn:aws:lambda:us-west-2:096412041307:layer:*",
                 "arn:aws:lambda:us-west-2:096412041307:layer:*:*",
                 "arn:aws:lambda:us-west-2:096412041307:event-source-mapping:*",
-                "arn:aws:execute-api:us-west-2:096412041307:*"
+                "arn:aws:execute-api:us-west-2:096412041307:*",
+                "arn:aws:execute-api:us-west-2:096412041307:/*/*/*/*",
+                "arn:aws:apigateway:us-west-2:096412041307:/*/*/*/*",
+                "arn:aws:apigateway:us-west-2::/restapis/*",
+                "arn:aws:apigateway:us-west-2::/restapis"
             ]
         }
     ]
