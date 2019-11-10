@@ -12,10 +12,11 @@ Globals:
 
 Resources:
   VulnDBFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function  # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: vulndb/
       Handler: app.lambda_handler
+      Role: arn:aws:iam::096412041307:role/tillis_automation_srvless
       Runtime: python3.7
       Events:
         VulnDB:
@@ -23,17 +24,17 @@ Resources:
           Properties:
             Path: /vulndb
             Method: ANY
-      Policies:
-        - DynamoDBCrudPolicy:
-            Partition: AWS
-            Region: ${AWS::Region}
-            AccountId: ${AWS::AccountId}
-            TableName: checklist_redhat
-        - DynamoDBReadPolicy:
-            Partition: AWS
-            Region: ${AWS::Region}
-            AccountId: ${AWS::AccountId}
-            TableName: checklist_redhat
+      # Policies:
+      #   - DynamoDBCrudPolicy:
+      #       Partition: AWS
+      #       Region: ${AWS::Region}
+      #       AccountId: ${AWS::AccountId}
+      #       TableName: checklist_redhat
+      #   - DynamoDBReadPolicy:
+      #       Partition: AWS
+      #       Region: ${AWS::Region}
+      #       AccountId: ${AWS::AccountId}
+      #       TableName: checklist_redhat
   myDynamoDBTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -77,6 +78,7 @@ Outputs:
   VulnDBFunction:
     Description: "VulnDB Lambda Function ARN"
     Value: !GetAtt VulnDBFunction.Arn
-  VulnDBFunctionIamRole:
-    Description: "Implicit IAM Role created for VulnDB function"
-    Value: !GetAtt VulnDBFunctionRole.Arn
+#  VulnDBFunctionIamRole:
+#    Description: "Implicit IAM Role created for VulnDB function"
+#    Value: !GetAtt VulnDBFunctionRole.Arn
+#

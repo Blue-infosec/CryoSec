@@ -18,16 +18,10 @@ Outputs:
       Fn::GetAtt:
       - VulnDBFunction
       - Arn
-  VulnDBFunctionIamRole:
-    Description: Implicit IAM Role created for VulnDB function
-    Value:
-      Fn::GetAtt:
-      - VulnDBFunctionRole
-      - Arn
 Resources:
   VulnDBFunction:
     Properties:
-      CodeUri: s3://vulndb/835e735ed75ea24606fb1fb811d8cca1
+      CodeUri: s3://vulndb/fffe38eab6a3858e908c493636a3d5a1
       Events:
         VulnDB:
           Properties:
@@ -35,17 +29,7 @@ Resources:
             Path: /vulndb
           Type: Api
       Handler: app.lambda_handler
-      Policies:
-      - DynamoDBCrudPolicy:
-          AccountId: ${AWS::AccountId}
-          Partition: AWS
-          Region: ${AWS::Region}
-          TableName: checklist_redhat
-      - DynamoDBReadPolicy:
-          AccountId: ${AWS::AccountId}
-          Partition: AWS
-          Region: ${AWS::Region}
-          TableName: checklist_redhat
+      Role: arn:aws:iam::096412041307:role/tillis_automation_srvless
       Runtime: python3.7
     Type: AWS::Serverless::Function
   myDynamoDBTable:
