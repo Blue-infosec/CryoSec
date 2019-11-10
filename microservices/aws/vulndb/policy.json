@@ -4,13 +4,8 @@
         {
             "Effect": "Allow",
             "Action": [
-                "iam:CreateServiceLinkedRole",
-                "iam:DeleteServiceLinkedRole",
                 "iam:DetachRolePolicy",
                 "iam:ListRoles",
-                "iam:CreateRole",
-                "iam:DeleteRole",
-                "iam:DeleteRolePolicy",
                 "iam:PutRolePolicy",
                 "iam:AttachRolePolicy",
                 "iam:GetRole",
