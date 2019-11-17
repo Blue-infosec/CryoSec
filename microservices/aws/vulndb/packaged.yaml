@@ -21,7 +21,7 @@ Outputs:
 Resources:
   VulnDBFunction:
     Properties:
-      CodeUri: s3://vulndb/fffe38eab6a3858e908c493636a3d5a1
+      CodeUri: s3://vulndbmiguel/1f5a56308f7226e4fe45f647ebb639b2
       Events:
         VulnDB:
           Properties:
@@ -57,6 +57,6 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: '5'
         WriteCapacityUnits: '5'
-      TableName: checklist_redhat
+      TableName: vulndbmiguel
     Type: AWS::DynamoDB::Table
 Transform: AWS::Serverless-2016-10-31

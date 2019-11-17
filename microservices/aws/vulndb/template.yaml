@@ -14,7 +14,7 @@ Resources:
   VulnDBFunction:
     Type: AWS::Serverless::Function  # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: vulndb/
+#      CodeUri: vulndb/
       Handler: app.lambda_handler
       Role: arn:aws:iam::096412041307:role/tillis_automation_srvless
       Runtime: python3.7
@@ -38,7 +38,7 @@ Resources:
   myDynamoDBTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: "checklist_redhat"
+      TableName: appname
       AttributeDefinitions:
         -
           AttributeName: "stig_id"
