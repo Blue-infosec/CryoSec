@@ -52,6 +52,8 @@ function deploy_stack {
     sed -i "s/TableName:.*/TableName: ${appname}/g" packaged.yaml
 
     echo "Deploying..."
+    dynamo=$(aws dynamodb batch-write-item --request-items file://db_data.json 2> >(grep -o "error"))
+    if [[ $dynamo == *"error"* ]]; then echo -e "${RED}DynamoDB Creation failed. $get${NC}"; else echo -e "${GREEN}DynamoDB Creation Success $get${NC}"; fi
     sam deploy --template-file packaged.yaml --region $region \
       --capabilities CAPABILITY_IAM --stack-name $appname --parameter-overrides "appname=vulndbmiguel"
     aws cloudformation describe-stacks --stack-name $appname --region $region --query "Stacks[].Outputs"
@@ -60,25 +62,25 @@ function deploy_stack {
 
 if [ "$1" == "create" ]
 then
-    # Create Bucket
-    
-    aws s3 mb s3://$bucketname --region $region > /dev/null
+    aws s3 mb s3://$bucketname --region $region 2> /dev/null
     echo -e "${YELLOW}Deploying Stack...${NC}"
-    deploy_stack > /dev/null && echo -e "${GREEN}Stack Deployed Successfully ${NC}" || echo -e "${RED} Stack Deploy Error: ${NC}"
-    aws dynamodb batch-write-item --request-items file://db_data.json > /dev/null
+    create=$(deploy_stack 2> >(grep -o "error")) # && echo -e "${GREEN}Stack Deployed Successfully ${NC}" || echo -e "${RED} Stack Deploy Error ${NC}"
+    if [[ $create == *"error"* ]]; then echo -e "${RED}Stack Create Failed. Possible Delete in Progress? $get${NC}"; else echo -e "${GREEN}Stack Create Success $get${NC}"; fi
+
+    
 elif [ "$1" == "modify" ]
 then
     echo -e "${YELLOW}Deploying Stack...${NC}"
-    deploy_stack > /dev/null && echo -e "${GREEN}Stack Deployed Successfully ${NC}" || echo -e "${RED} Stack Deploy Error: ${NC}"
+    create=$(deploy_stack 2> >(grep -o "error")) # && echo -e "${GREEN}Stack Deployed Successfully ${NC}" || echo -e "${RED} Stack Deploy Error ${NC}"
+    if [[ $create == *"error"* ]]; then echo -e "${RED}Stack Create Failed. Possible Delete in Progress? $get${NC}"; else echo -e "${GREEN}Stack Create Success $get${NC}"; fi
+
 elif [ "$1" == "delete" ]
 then
-    # Remove Bucket
-    aws s3 rb s3://$bucketname --region $region --force > /dev/null
-
-    # Remove Stack
+    # Remove Bucket\
     echo -e "${YELLOW}Deleting Stack...${NC}"
+    stack_del=$(aws s3 rb s3://$bucketname --region $region --force 2> /dev/null; aws cloudformation delete-stack --stack-name $appname 2> >(grep -o "error"))
+    if [[ $stack_del == *"error"* ]]; then echo -e "${RED}Stack Delete Failed $get${NC}"; else echo -e "${GREEN}Stack Delete Success $get${NC}"; fi
 
-    aws cloudformation delete-stack --stack-name $appname && echo -e "${GREEN}Stack Deleted Successfully ${NC}" || echo -e "${RED} Stack Delete Error: ${NC}"
 elif [ "$1" == "test" ]
 then
   test_stack
