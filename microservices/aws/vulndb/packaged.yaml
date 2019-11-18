@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'vulndb app
+
+  Modify vulnerability status via API
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Outputs:
+  VulnDBApi:
+    Description: API Gateway endpoint URL for Prod stage for VulnDB function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/vulndb/
+  VulnDBFunction:
+    Description: VulnDB Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - VulnDBFunction
+      - Arn
+Resources:
+  VulnDBFunction:
+    Properties:
+      CodeUri: s3://vulndbmiguel/f252f50bcc687465001a86312d98d9da
+      Events:
+        VulnDB:
+          Properties:
+            Method: ANY
+            Path: /vulndb
+          Type: Api
+      Handler: app.lambda_handler
+      Role: arn:aws:iam::096412041307:role/tillis_automation_srvless
+      Runtime: python3.7
+    Type: AWS::Serverless::Function
+  myDynamoDBTable:
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: stig_id
+        AttributeType: S
+      - AttributeName: stig_status
+        AttributeType: S
+      GlobalSecondaryIndexes:
+      - IndexName: myGSI
+        KeySchema:
+        - AttributeName: stig_status
+          KeyType: HASH
+        Projection:
+          NonKeyAttributes:
+          - stig_id
+          ProjectionType: INCLUDE
+        ProvisionedThroughput:
+          ReadCapacityUnits: '5'
+          WriteCapacityUnits: '5'
+      KeySchema:
+      - AttributeName: stig_id
+        KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: '5'
+        WriteCapacityUnits: '5'
+      TableName: vulndbmiguel
+    Type: AWS::DynamoDB::Table
+Transform: AWS::Serverless-2016-10-31
